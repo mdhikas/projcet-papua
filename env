@@ -14,7 +14,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP
@@ -50,9 +50,9 @@
 #--------------------------------------------------------------------
 
 # database.default.hostname = localhost
-# database.default.database = ci4
+# database.default.database = project-papua
 # database.default.username = root
-# database.default.password = root
+# database.default.password =
 # database.default.DBDriver = MySQLi
 
 # database.tests.hostname = localhost
