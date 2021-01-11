@@ -33,6 +33,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Pages::index');
+$routes->get('/home', 'Pages::index');
+$routes->get('/nilai', 'Pages::nilai');
 
 /**
  * --------------------------------------------------------------------
