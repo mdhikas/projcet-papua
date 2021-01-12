@@ -13,4 +13,9 @@ class Pages extends BaseController
     {
         return view('pages/nilai');
     }
+
+    public function nilai_mhs()
+    {
+        return view('pages/nilai_mhs');
+    }
 }

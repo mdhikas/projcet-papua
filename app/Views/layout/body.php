@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/css/adminlte.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -29,10 +30,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="/home" class="nav-link">Home</a>
                 </li>
             </ul>
 
@@ -64,7 +62,7 @@
         <?= $this->renderSection('content'); ?>
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2021 <a href="http://aiotech.id/">AioTech ITPLN</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2021 <a href="http://aiotech.id/" target="_blank">AioTech ITPLN</a>.</strong> All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->
@@ -84,7 +82,14 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/js/demo.js"></script>
     <script>
-
+        $(document).ready(function() {
+            $("#inputState").on('change', function() {
+                // const value = $($this).val()
+                // alert($(this).val());
+                $(".table").hide();
+                $("#" + $(this).val()).fadeIn(300);
+            }).change();
+        });
     </script>
 </body>
 

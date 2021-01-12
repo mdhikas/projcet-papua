@@ -30,7 +30,17 @@
                     <a href="/nilai" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Nilai
+                            Mahasiswa
+                        </p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="/nilai" class="nav-link">
+                        <i class="nav-icon fas fa-user-cog"></i>
+                        <p>
+                            User
                         </p>
                     </a>
                 </li>
