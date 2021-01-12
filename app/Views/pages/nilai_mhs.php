@@ -26,13 +26,37 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-body">
-                <div class="form-group col-md-4">
-                    <label for="inputState">Pilih Berdasarkan</label>
-                    <select id="inputState" class="form-control">
-                        <option selected disabled value="none">Pilih...</option>
-                        <option value="semester">Semester</option>
-                        <option value="matkul">Mata Kuliah</option>
-                    </select>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inputState">Pilih Berdasarkan</label>
+                        <select id="inputState" class="form-control">
+                            <option selected disabled value="none">Pilih...</option>
+                            <option value="semester">Semester</option>
+                            <option value="matkul">Mata Kuliah</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-box mb-4">
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-chart-bar"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Jumlah SKS</span>
+                                <span class="info-box-number">100</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-chart-line"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">IPK</span>
+                                <span class="info-box-number">100</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
                 </div>
                 <table class="table table-bordered" id="semester">
                     <thead>
