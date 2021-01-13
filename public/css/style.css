@@ -1,3 +1,17 @@
 .table {
     display: none;
 }
+
+.title-mhs {
+    text-align: right;
+}
+
+.info > a {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.col-md > a {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}

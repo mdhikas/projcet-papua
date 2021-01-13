@@ -28,7 +28,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">User</span>
-              <span class="info-box-number">10</span>
+              <span class="info-box-number">4</span>
             </div>
             <!-- /.info-box-content -->
           </div>

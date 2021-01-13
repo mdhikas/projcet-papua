@@ -28,13 +28,18 @@
                 <h3 class="card-title">KHS Mahasiswa</h3>
             </div>
             <div class="card-body">
-                <div class="form-group col-md-4">
-                    <label for="inputState">Pilih Berdasarkan</label>
-                    <select id="inputState" class="form-control">
-                        <option selected disabled value="none">Pilih...</option>
-                        <option value="ipk">IPK Mahasiswa</option>
-                        <option value="nama">Nama Mahasiswa</option>
-                    </select>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inputState">Pilih Berdasarkan</label>
+                        <select id="inputState" class="form-control">
+                            <option selected disabled value="none">Pilih...</option>
+                            <option value="ipk">IPK Mahasiswa</option>
+                            <option value="nama">Nama Mahasiswa</option>
+                        </select>
+                    </div>
+                    <div class="col-md">
+                        <a href="/nilai/tambah_data" class="btn btn-primary float-right">Tambah Data Mahasiswa</a>
+                    </div>
                 </div>
                 <table class="table table-bordered" id="ipk">
                     <thead>
@@ -79,9 +84,9 @@
                             <td>Teknik Informatika</td>
                             <td>S1</td>
                             <td>
-                                <button class="btn btn-primary">Detail</button>
-                                <button class="btn btn-warning mx-2">Edit</button>
-                                <button class="btn btn-danger">Hapus</button>
+                                <a href="/nilai/nilai_mhs" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                <button class="btn btn-warning m-2"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                     </tbody>
