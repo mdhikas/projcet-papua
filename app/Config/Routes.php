@@ -47,6 +47,19 @@ $routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function($route
   $routes->post('get_records', 'MahasiswaController::get_records');
 });
 
+$routes->group('master', ['namespace' => '\App\Controllers\Master'], function($routes) {
+  
+  $routes->group('fakultas', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'FakultasController::index');
+    $routes->post('store', 'FakultasController::store');
+    $routes->post('update', 'FakultasController::update');
+    $routes->post('destroy', 'FakultasController::destroy');
+    $routes->post('get_records', 'FakultasController::get_records');
+  });
+
+
+});
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
