@@ -21,7 +21,7 @@
 
   <section class="content">
     <div class="card card-solid">
-      <form role="form">
+      <form role="form" id="form-store-mahasiswa">
         <div class="card-body">
           <div class="row">
             <div class="col">
@@ -55,7 +55,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Tanggal Lahir">
+                <input type="email" class="form-control" name="email" placeholder="Email">
               </div>
             </div>
             <div class="col">
@@ -79,13 +79,18 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleInputEmail1">Jurusan</label>
-                <select name="jurusan" id="jurusan" class="form-control"></select>
+                <select name="jurusan" id="jurusan" class="form-control select2">
+                  <option selected disabled>-- Pilih Jurusan --</option>
+                  <?php foreach ($jurusan as $k) : ?>
+                    <option value="<?= $k['kode_jurusan'] ?>"><?= $k['jenjang'] ?> <?= $k['nama_jurusan'] ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
       </form>
     </div>

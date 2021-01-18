@@ -37,6 +37,16 @@ $routes->get('/home', 'Pages::index');
 $routes->get('/nilai', 'Pages::nilai');
 $routes->get('/nilai/nilai_mhs', 'Pages::nilai_mhs');
 
+$routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function($routes) {
+  $routes->get('/', 'MahasiswaController::index');
+  $routes->get('create', 'MahasiswaController::create');
+  $routes->post('store', 'MahasiswaController::store');
+  $routes->get('edit/(:num)', 'MahasiswaController::edit/$1');
+  $routes->post('update', 'MahasiswaController::update');
+  $routes->post('destroy', 'MahasiswaController::destroy');
+  $routes->post('get_records', 'MahasiswaController::get_records');
+});
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
