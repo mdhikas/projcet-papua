@@ -24,8 +24,7 @@
                         </p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">MANAGEENT MAHASISWA</li>
                 <li class="nav-item">
                     <a href="/nilai" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
@@ -34,8 +33,7 @@
                         </p>
                     </a>
                 </li>
-            </ul>
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">MANAGEMENT USER</li>
                 <li class="nav-item">
                     <a href="/nilai" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>
@@ -44,7 +42,21 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('logout'); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                </li>
             </ul>
+            <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            </ul>
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            </ul> -->
         </nav>
         <!-- /.sidebar-menu -->
     </div>

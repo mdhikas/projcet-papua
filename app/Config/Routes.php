@@ -37,6 +37,10 @@ $routes->get('/home', 'Pages::index');
 $routes->get('/nilai', 'Pages::nilai');
 $routes->get('/nilai/nilai_mhs', 'Pages::nilai_mhs');
 
+
+// $routes->get('/login', 'Auth::login');
+// $routes->get('/register', 'Auth::register');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
