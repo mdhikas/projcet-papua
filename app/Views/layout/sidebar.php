@@ -50,7 +50,7 @@
               </a>
               <ul class="nav nav-treeview" style="display: none;">
                 <li class="nav-item">
-                  <a href="charts/chartjs.html" class="nav-link">
+                  <a href="<?= base_url('master/jurusan') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Jurusan</p>
                   </a>

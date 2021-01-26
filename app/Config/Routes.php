@@ -57,6 +57,14 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
     $routes->post('get_records', 'FakultasController::get_records');
   });
 
+  $routes->group('jurusan', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'JurusanController::index');
+    $routes->post('store', 'JurusanController::store');
+    $routes->post('update', 'JurusanController::update');
+    $routes->post('destroy', 'JurusanController::destroy');
+    $routes->post('get_records', 'JurusanController::get_records');
+  });
+
 
 });
 
