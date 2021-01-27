@@ -67,6 +67,12 @@
                     <p>Mata Kuliah</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('master/semester') ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Semester</p>
+                  </a>
+                </li>
               </ul>
             </li>
           </ul>

@@ -73,6 +73,14 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
     $routes->post('get_records', 'MataKuliahController::get_records');
   });
 
+  $routes->group('semester', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'SemesterController::index');
+    $routes->post('store', 'SemesterController::store');
+    $routes->post('update', 'SemesterController::update');
+    $routes->post('destroy', 'SemesterController::destroy');
+    $routes->post('get_records', 'SemesterController::get_records');
+  });
+
 });
 
 /**
