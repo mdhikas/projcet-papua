@@ -65,6 +65,13 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
     $routes->post('get_records', 'JurusanController::get_records');
   });
 
+  $routes->group('matkul', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'MataKuliahController::index');
+    $routes->post('store', 'MataKuliahController::store');
+    $routes->post('update', 'MataKuliahController::update');
+    $routes->post('destroy', 'MataKuliahController::destroy');
+    $routes->post('get_records', 'MataKuliahController::get_records');
+  });
 
 });
 

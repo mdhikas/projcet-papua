@@ -17,6 +17,12 @@ $(document).ready(function() {
  });
 });
 
+function base_url() {
+  const base_url = window.location.origin;
+  const pathArray = window.location.pathname.split('/');
+  return base_url + '/' + pathArray[1];
+}
+
 function error_validation(message) {
   toastr.error(`${message}.`);
 }

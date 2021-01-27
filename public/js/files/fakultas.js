@@ -98,7 +98,7 @@ function update() {
         Swal.fire({
           icon: 'success',
           title: 'Good Job',
-          text: 'Data berhasil disimpan',
+          text: 'Data berhasil diperbaharui',
         })
       } else {
         Swal.fire({
