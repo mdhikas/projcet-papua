@@ -100,20 +100,33 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Edit Data Fakultas</h4>
+          <h4 class="modal-title">Edit Data Jurusan</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form id="form-update-fakultas">
+        <form id="form-update-jurusan">
           <div class="modal-body">
             <div class="form-group">
-              <label for="">Kode Fakultas</label>
-              <input type="text" class="form-control" name="kode_fakultas" placeholder="Kode Fakultas" readonly>
+              <label for="">Kode Jurusan</label>
+              <input type="text" class="form-control" name="kode_jurusan" placeholder="Kode Jurusan" readonly>
+            </div>
+            <div class="form-group">
+              <label for="">Program Studi</label>
+              <input type="text" class="form-control" name="jenjang" placeholder="Program Studi">
+            </div>
+            <div class="form-group">
+              <label for="">Nama Jurusan</label>
+              <input type="text" class="form-control" name="nama_jurusan" placeholder="Nama Jurusan">
             </div>
             <div class="form-group">
               <label for="">Nama Fakultas</label>
-              <input type="text" class="form-control" name="nama_fakultas" placeholder="Nama Fakultas">
+              <select name="kode_fakultas" class="form-control select2" width="100%">
+                <option selected disabled>-- Pilih Fakultas --</option>
+                <?php foreach ($fakultas as $k) : ?>
+                  <option value="<?= $k['kode_fakultas'] ?>"><?= $k['nama_fakultas'] ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
           </div>
           <div class="modal-footer justify-content-between">

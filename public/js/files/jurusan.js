@@ -8,6 +8,24 @@ $(document).ready(function() {
     
     store();
   });
+
+  $('#form-update-jurusan').on('submit', function(e) {
+    e.preventDefault();
+    update();
+  });
+
+  $(document).on('click', '.btn-edit', function() {
+    $('#modal-edit').modal('toggle');
+    const kode_fakultas = $(this).data('kode_fakultas');
+    const kode_jurusan = $(this).data('kode_jurusan');
+    const jenjang = $(this).data('jenjang');
+    const nama_jurusan = $(this).data('nama_jurusan');
+
+    $('#modal-edit select[name="kode_fakultas"]').val(kode_fakultas).trigger('change');
+    $('#modal-edit input[name="kode_jurusan"]').val(kode_jurusan);
+    $('#modal-edit input[name="jenjang"]').val(jenjang);
+    $('#modal-edit input[name="nama_jurusan"]').val(nama_jurusan);
+  });
 });
 
 function store() {
@@ -68,6 +86,79 @@ function store() {
       console.error(err.responseText)
     }
   });
+}
+
+function update() {
+  $.ajax({
+    url: base_url() + '/jurusan/update',
+    type: 'POST',
+    data: $('#form-update-jurusan').serialize(),
+    dataType: 'JSON',
+    success: function (res) {
+      $('#modal-edit').modal('toggle');
+      $('#form-update-jurusan').trigger('reset');
+      if (res.status === 1) {
+        jurusan_table.ajax.reload();
+        Swal.fire({
+          icon: 'success',
+          title: 'Good Job',
+          text: 'Data berhasil diperbaharui',
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
+      }
+    },
+    error: err => console.error(err.responseText)
+  });
+}
+
+function destroy(kode_jurusan) {
+  Swal.fire({
+    title: 'Apakah kamu yakin?',
+    text: "Data ini tidak dapat dikembalikan!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Hapus',
+    cancelButtonText: 'Batal'
+  }).then((result) => {
+    if (result.value) {
+      $.ajax({
+        url: base_url() + '/jurusan/destroy',
+        type: 'POST',
+        data: { kode_jurusan },
+        dataType: 'JSON',
+        success: function(res) {
+          if (res.status === 1) {
+            jurusan_table.ajax.reload();
+            Swal.fire({
+              icon: 'success',
+              title: 'Good Job',
+              text: 'Data berhasil dihapus',
+            })
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
+          }
+        },
+        error: function(err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          });
+        }
+      });
+    }
+  })
 }
 
 function get_records() {

@@ -41,6 +41,34 @@ class JurusanController extends Controller {
     }
   }
 
+  public function update() {
+    $kode_jurusan = $_POST['kode_jurusan'];
+    $jenjang = $_POST['jenjang'];
+    $nama_jurusan = $_POST['nama_jurusan'];
+    $kode_fakultas = $_POST['kode_fakultas'];
+
+    $data['kode_jurusan'] = $kode_jurusan;
+    $data['jenjang'] = $jenjang;
+    $data['nama_jurusan'] = $nama_jurusan;
+    $data['kode_fakultas'] = $kode_fakultas;
+
+    if ($this->jurusan_model->save($data)) {
+      return json_encode(['status' => 1]);
+    } else {
+      return json_encode(['status' => 0]);
+    }
+  }
+
+  public function destroy() {
+    $kode_jurusan = $_POST['kode_jurusan'];
+
+    if ($this->jurusan_model->delete($kode_jurusan)) {
+      return json_encode(['status' => 1]);
+    } else {
+      return json_encode(['status' => 0]);
+    }
+  }
+
   public function get_records() {
     $jurusan_model = $this->jurusan_model;
     $where = ['kode_jurusan !=' => ''];
@@ -58,9 +86,11 @@ class JurusanController extends Controller {
       $start++;
       $row    = array();
 
-      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_fakultas="'.$list['kode_fakultas'].'" data-nama_fakultas="'.$list['nama_fakultas'].'" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
+      $kode_jurusan = "'" . $list['kode_jurusan'] . "'";
 
-      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" data-kode_fakultas="'.$list['kode_fakultas'].'"><i class="fas fa-trash-alt"></i></button>';
+      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_fakultas="'.$list['kode_fakultas'].'" data-kode_jurusan="'.$list['kode_jurusan'].'" data-jenjang="'.$list['jenjang'].'" data-nama_jurusan="'.$list['nama_jurusan'].'" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
+
+      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy('.$kode_jurusan.')"><i class="fas fa-trash-alt"></i></button>';
 
       $row[]  = $start;
       $row[]  = $list['kode_jurusan'];
