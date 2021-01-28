@@ -24,18 +24,18 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">MANAGEENT MAHASISWA</li>
+                <li class="nav-header">MANAGEMENT MAHASISWA</li>
                 <li class="nav-item">
                     <a href="<?= base_url('mahasiswa') ?>" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                          Mahasiswa
+                            Mahasiswa
                         </p>
                     </a>
                 </li>
                 <li class="nav-header">MANAGEMENT USER</li>
                 <li class="nav-item">
-                    <a href="/nilai" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>
                         <p>
                             User

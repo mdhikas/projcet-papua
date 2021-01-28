@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody>
-                    
+
               </tbody>
               <tfoot>
                 <tr>
@@ -53,7 +53,7 @@
             </table>
           </div>
         </div>
-      
+
       </div>
     </div>
   </section>

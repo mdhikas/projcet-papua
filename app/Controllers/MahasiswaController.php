@@ -7,31 +7,36 @@ use CodeIgniter\Controller;
 use App\Models\MahasiswaModel;
 use App\Models\Master\JurusanModel;
 
-class MahasiswaController extends Controller {
+class MahasiswaController extends Controller
+{
   protected $mahasiswa_model;
   protected $jurusan_model;
   protected $uri;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->mahasiswa_model = new MahasiswaModel();
     $this->jurusan_model = new JurusanModel();
     $this->uri = new \CodeIgniter\HTTP\URI();
     $this->uri = service('uri');
   }
 
-  public function index() {
+  public function index()
+  {
     $data['js'] = 'mahasiswa.js';
     return view('mahasiswa/mahasiswa_view', $data);
   }
 
-  public function create() {
+  public function create()
+  {
     $data['js'] = 'mahasiswa.js';
     $data['jurusan'] = $this->jurusan_model->findAll();
 
     return view('mahasiswa/mahasiswa_create_view', $data);
   }
 
-  public function store() {
+  public function store()
+  {
     $nim = $_POST['nim'];
     $nama = $_POST['nama'];
     $tempat_lahir = $_POST['tempat_lahir'];
@@ -57,17 +62,19 @@ class MahasiswaController extends Controller {
     }
   }
 
-  public function edit() {
+  public function edit()
+  {
     $nim = $this->uri->getSegment(3);
 
     $data['js'] = 'mahasiswa.js';
     $data['jurusan'] = $this->jurusan_model->findAll();
     $data['mahasiswa'] = $this->mahasiswa_model->find($nim);
-    
+
     return view('mahasiswa/mahasiswa_edit_view', $data);
   }
 
-  public function update() {
+  public function update()
+  {
     $nim = $_POST['nim'];
     $nama = $_POST['nama'];
     $tempat_lahir = $_POST['tempat_lahir'];
@@ -93,7 +100,8 @@ class MahasiswaController extends Controller {
     }
   }
 
-  public function destroy() {
+  public function destroy()
+  {
     $nim = $_POST['nim'];
 
     if ($this->mahasiswa_model->delete($nim)) {
@@ -103,7 +111,8 @@ class MahasiswaController extends Controller {
     }
   }
 
-  public function get_records() {
+  public function get_records()
+  {
     $mahasiswa_model = $this->mahasiswa_model;
     $where = ['nim !=' => 0];
     $column_order   = array('', 'nim', 'nama', 'email', 'jurusan.nama_jurusan', '');
@@ -113,37 +122,37 @@ class MahasiswaController extends Controller {
     $data = array();
     $start = 0;
     if (isset($_POST['start'])) {
-        $start = $_POST['start'];
+      $start = $_POST['start'];
     }
-    
+
     foreach ($lists as $list) {
-        $start++;
-        $row    = array();
+      $start++;
+      $row    = array();
 
-        $btn_edit = '<a href="'. base_url('mahasiswa/edit/' . $list['nim']) .'" class="btn btn-warning btn-sm btn-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
+      $btn_edit = '<a href="' . base_url('mahasiswa/edit/' . $list['nim']) . '" class="btn btn-warning btn-sm btn-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
 
-        $btn_delete = '<button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy('. $list['nim'] .')"><i class="fas fa-trash-alt"></i></button>';
+      $btn_delete = '<button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy(' . $list['nim'] . ')"><i class="fas fa-trash-alt"></i></button>';
 
-        $row[]  = $start;
-        $row[]  = $list['nim'];
-        $row[]  = $list['nama'];
-        $row[]  = $list['email'];
-        $row[]  = $list['jenjang'] . " " . $list['nama_jurusan'];
-        $row[]  = $btn_edit . ' ' . $btn_delete;
+      $row[]  = $start;
+      $row[]  = $list['nim'];
+      $row[]  = $list['nama'];
+      $row[]  = $list['email'];
+      $row[]  = $list['jenjang'] . " " . $list['nama_jurusan'];
+      $row[]  = $btn_edit . ' ' . $btn_delete;
 
-        $data[] = $row;
+      $data[] = $row;
     }
 
     $sEcho = 1;
-		if (isset($_POST['draw'])) {
-			$sEcho = intval($_POST['draw']);
-		}
+    if (isset($_POST['draw'])) {
+      $sEcho = intval($_POST['draw']);
+    }
 
     $output = array(
-        "draw" => $sEcho,
-        "recordsTotal" => $mahasiswa_model->count_all('mahasiswa', $where),
-        "recordsFiltered" => $mahasiswa_model->count_filtered('mahasiswa', $column_order, $column_search, $order, $where),
-        "data" => $data,
+      "draw" => $sEcho,
+      "recordsTotal" => $mahasiswa_model->count_all('mahasiswa', $where),
+      "recordsFiltered" => $mahasiswa_model->count_filtered('mahasiswa', $column_order, $column_search, $order, $where),
+      "data" => $data,
     );
 
     echo json_encode($output);
