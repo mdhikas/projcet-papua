@@ -4,11 +4,11 @@ namespace App\Models\Master;
 
 use CodeIgniter\Model;
 
-class JurusanModel extends Model {
-  protected $table      = 'jurusan';
-  protected $primaryKey = 'kode_jurusan';
-  protected $allowedFields = ['kode_jurusan', 'jenjang', 'nama_jurusan', 'kode_fakultas'];
-
+class SemesterModel extends Model {
+  protected $table      = 'semester';
+  protected $primaryKey = 'kode_semester';
+  protected $allowedFields = ['kode_semester', 'keterangan'];
+  
   protected $db;
   protected $builder;
 
@@ -53,11 +53,10 @@ class JurusanModel extends Model {
     if ($data) {
       $this->builder->where($data);
     }
-    $this->builder->select('kode_jurusan, jenjang, nama_jurusan, jurusan.kode_fakultas, fakultas.nama_fakultas');
-    $this->builder->join('fakultas', 'fakultas.kode_fakultas = jurusan.kode_fakultas');
+    
     $query = $this->builder->get();
     return $query->getResultArray();
- }
+  }
 
   public function count_filtered($table, $column_order, $column_search, $order, $data = '') {
     $this->_get_datatables_query($table, $column_order, $column_search, $order);

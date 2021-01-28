@@ -4,10 +4,10 @@ namespace App\Models\Master;
 
 use CodeIgniter\Model;
 
-class JurusanModel extends Model {
-  protected $table      = 'jurusan';
-  protected $primaryKey = 'kode_jurusan';
-  protected $allowedFields = ['kode_jurusan', 'jenjang', 'nama_jurusan', 'kode_fakultas'];
+class FakultasModel extends Model {
+  protected $table      = 'fakultas';
+  protected $primaryKey = 'kode_fakultas';
+  protected $allowedFields = ['kode_fakultas', 'nama_fakultas'];
 
   protected $db;
   protected $builder;
@@ -45,7 +45,7 @@ class JurusanModel extends Model {
     }
   }
 
-  public function get_datatables($table, $column_order, $column_search, $order, $data = '') {
+ public function get_datatables($table, $column_order, $column_search, $order, $data = '') {
     $this->_get_datatables_query($table, $column_order, $column_search, $order);
     
     if (isset($_POST['length']) && $_POST['length'] != -1)
@@ -53,8 +53,7 @@ class JurusanModel extends Model {
     if ($data) {
       $this->builder->where($data);
     }
-    $this->builder->select('kode_jurusan, jenjang, nama_jurusan, jurusan.kode_fakultas, fakultas.nama_fakultas');
-    $this->builder->join('fakultas', 'fakultas.kode_fakultas = jurusan.kode_fakultas');
+    $this->builder->select('*');
     $query = $this->builder->get();
     return $query->getResultArray();
  }

@@ -214,7 +214,6 @@ function destroy(nim) {
       data: { nim },
       dataType: 'JSON',
       success: function(res) {
-        console.log(res);
         if (res.status === 1) {
           mahasiswa_table.ajax.reload();
           Swal.fire({

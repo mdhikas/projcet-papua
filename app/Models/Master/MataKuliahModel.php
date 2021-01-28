@@ -4,10 +4,10 @@ namespace App\Models\Master;
 
 use CodeIgniter\Model;
 
-class JurusanModel extends Model {
-  protected $table      = 'jurusan';
-  protected $primaryKey = 'kode_jurusan';
-  protected $allowedFields = ['kode_jurusan', 'jenjang', 'nama_jurusan', 'kode_fakultas'];
+class MataKuliahModel extends Model {
+  protected $table      = 'mata_kuliah';
+  protected $primaryKey = 'kode_mk';
+  protected $allowedFields = ['kode_mk', 'nama_mk', 'jumlah_sks', 'kode_jurusan'];
 
   protected $db;
   protected $builder;
@@ -15,6 +15,11 @@ class JurusanModel extends Model {
   public function __construct() {
     parent::__construct();
     $this->db = \Config\Database::connect();
+  }
+
+  public function insert_batch($data) {
+    $this->builder = $this->db->table($this->table);
+    return $this->builder->insertBatch($data);
   }
 
   protected function _get_datatables_query($table, $column_order, $column_search, $order) {
@@ -53,8 +58,8 @@ class JurusanModel extends Model {
     if ($data) {
       $this->builder->where($data);
     }
-    $this->builder->select('kode_jurusan, jenjang, nama_jurusan, jurusan.kode_fakultas, fakultas.nama_fakultas');
-    $this->builder->join('fakultas', 'fakultas.kode_fakultas = jurusan.kode_fakultas');
+    $this->builder->select('kode_mk, nama_mk, jumlah_sks, jurusan.kode_jurusan, jurusan.jenjang, jurusan.nama_jurusan');
+    $this->builder->join('jurusan', 'jurusan.kode_jurusan = mata_kuliah.kode_jurusan');
     $query = $this->builder->get();
     return $query->getResultArray();
  }

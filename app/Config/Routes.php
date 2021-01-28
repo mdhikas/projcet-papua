@@ -47,6 +47,42 @@ $routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function ($rout
 	$routes->post('get_records', 'MahasiswaController::get_records');
 });
 
+$routes->group('master', ['namespace' => '\App\Controllers\Master'], function($routes) {
+  
+  $routes->group('fakultas', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'FakultasController::index');
+    $routes->post('store', 'FakultasController::store');
+    $routes->post('update', 'FakultasController::update');
+    $routes->post('destroy', 'FakultasController::destroy');
+    $routes->post('get_records', 'FakultasController::get_records');
+  });
+
+  $routes->group('jurusan', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'JurusanController::index');
+    $routes->post('store', 'JurusanController::store');
+    $routes->post('update', 'JurusanController::update');
+    $routes->post('destroy', 'JurusanController::destroy');
+    $routes->post('get_records', 'JurusanController::get_records');
+  });
+
+  $routes->group('matkul', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'MataKuliahController::index');
+    $routes->post('store', 'MataKuliahController::store');
+    $routes->post('update', 'MataKuliahController::update');
+    $routes->post('destroy', 'MataKuliahController::destroy');
+    $routes->post('get_records', 'MataKuliahController::get_records');
+  });
+
+  $routes->group('semester', ['namespace' => '\App\Controllers\Master'], function($routes) {
+    $routes->get('/', 'SemesterController::index');
+    $routes->post('store', 'SemesterController::store');
+    $routes->post('update', 'SemesterController::update');
+    $routes->post('destroy', 'SemesterController::destroy');
+    $routes->post('get_records', 'SemesterController::get_records');
+  });
+
+});
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
