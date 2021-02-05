@@ -22,6 +22,13 @@ class MataKuliahModel extends Model {
     return $this->builder->insertBatch($data);
   }
 
+  public function get_matkul_by_kode_mk($kode_mk) {
+    $this->builder = $this->db->table($this->table);
+    $this->builder->like('kode_mk', $kode_mk);
+    $query = $this->builder->get();
+    return $query->getResultArray();
+  }
+
   protected function _get_datatables_query($table, $column_order, $column_search, $order) {
     $this->builder = $this->db->table($table);
 
