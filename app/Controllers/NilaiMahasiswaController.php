@@ -10,6 +10,7 @@ class NilaiMahasiswaController extends Controller {
   protected $nilai_model;
 
   public function __construct() {
+    helper('nilai');
     $this->nilai_model = new NilaiMahasiswaModel();
   }
   
@@ -34,6 +35,8 @@ class NilaiMahasiswaController extends Controller {
       $data[$k]['nim'] = $nim;
       $data[$k]['kode_mk'] = $v;
       $data[$k]['nilai'] = $_POST['grade'][$k];
+      $data[$k]['sks'] = $_POST['sks'][$k];
+      $data[$k]['bobot'] = bobot($_POST['grade'][$k]);
       $data[$k]['semester'] = $kode_semester;
     }
 

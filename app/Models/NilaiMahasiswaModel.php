@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class NilaiMahasiswaModel extends Model {
   protected $table      = 'nilai_mahasiswa';
   protected $primaryKey = 'nilai_id';
-  protected $allowedFields = ['nim', 'kode_mk', 'nilai', 'semester'];
+  protected $allowedFields = ['nim', 'kode_mk', 'sks', 'bobot', 'nilai', 'semester'];
 
   protected $db;
   protected $bulder;
