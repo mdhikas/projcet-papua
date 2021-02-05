@@ -7,23 +7,28 @@ use CodeIgniter\Controller;
 use App\Models\Master\MataKuliahModel;
 use App\Models\Master\JurusanModel;
 
-class MataKuliahController extends Controller {
+class MataKuliahController extends Controller
+{
   protected $matkul_model;
   protected $jurusan_model;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->matkul_model = new MataKuliahModel();
     $this->jurusan_model = new JurusanModel();
   }
 
-  public function index() {
+  public function index()
+  {
+    $data['title'] = 'Data Mata Kuliah';
     $data['js'] = 'matkul.js';
     $data['jurusan'] = $this->jurusan_model->findAll();
 
     return view('master/matkul/matkul_view', $data);
   }
 
-  public function store() {
+  public function store()
+  {
     $kode_jurusan = $_POST['kode_jurusan'];
     $kode_matkul = $_POST['kode_matkul'];
     $nama_matkul = $_POST['nama_matkul'];
@@ -41,7 +46,8 @@ class MataKuliahController extends Controller {
     return json_encode($result);
   }
 
-  public function update() {
+  public function update()
+  {
     $kode_jurusan = $_POST['kode_jurusan'];
     $kode_matkul = $_POST['kode_matkul'];
     $nama_matkul = $_POST['nama_matkul'];
@@ -59,7 +65,8 @@ class MataKuliahController extends Controller {
     }
   }
 
-  public function destroy() {
+  public function destroy()
+  {
     $kode_matkul = $_POST['kode_matkul'];
 
     if ($this->matkul_model->delete($kode_matkul)) {
@@ -69,7 +76,8 @@ class MataKuliahController extends Controller {
     }
   }
 
-  public function get_records() {
+  public function get_records()
+  {
     $matkul_model = $this->matkul_model;
     $where = ['kode_mk !=' => ''];
     $column_order   = array('', 'nama_jurusan', 'kode_mk', 'nama_mk', 'jumlah_sks', '');
@@ -81,15 +89,15 @@ class MataKuliahController extends Controller {
     if (isset($_POST['start'])) {
       $start = $_POST['start'];
     }
-    
+
     foreach ($lists as $list) {
       $start++;
       $row    = array();
 
       $kode_mk = "'" . $list['kode_mk'] . "'";
-      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_jurusan="'.$list['kode_jurusan'].'" data-kode_mk="'.$list['kode_mk'].'" data-nama_mk="'.$list['nama_mk'].'" data-sks="'.$list['jumlah_sks'].'" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
+      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_jurusan="' . $list['kode_jurusan'] . '" data-kode_mk="' . $list['kode_mk'] . '" data-nama_mk="' . $list['nama_mk'] . '" data-sks="' . $list['jumlah_sks'] . '" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
 
-      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy('.$kode_mk.')"><i class="fas fa-trash-alt"></i></button>';
+      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy(' . $kode_mk . ')"><i class="fas fa-trash-alt"></i></button>';
 
       $row[]  = $start;
       $row[]  = $list['jenjang'] . ' ' . $list['nama_jurusan'];
@@ -102,15 +110,15 @@ class MataKuliahController extends Controller {
     }
 
     $sEcho = 1;
-		if (isset($_POST['draw'])) {
-			$sEcho = intval($_POST['draw']);
-		}
+    if (isset($_POST['draw'])) {
+      $sEcho = intval($_POST['draw']);
+    }
 
     $output = array(
-        "draw" => $sEcho,
-        "recordsTotal" => $matkul_model->count_all('mata_kuliah', $where),
-        "recordsFiltered" => $matkul_model->count_filtered('mata_kuliah', $column_order, $column_search, $order, $where),
-        "data" => $data,
+      "draw" => $sEcho,
+      "recordsTotal" => $matkul_model->count_all('mata_kuliah', $where),
+      "recordsFiltered" => $matkul_model->count_filtered('mata_kuliah', $column_order, $column_search, $order, $where),
+      "data" => $data,
     );
 
     echo json_encode($output);

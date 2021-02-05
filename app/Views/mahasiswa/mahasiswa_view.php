@@ -40,16 +40,6 @@
               <tbody>
 
               </tbody>
-              <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th>N.I.M</th>
-                  <th>Nama</th>
-                  <th>Email</th>
-                  <th>Jurusan</th>
-                  <th>Actions</th>
-                </tr>
-              </tfoot>
             </table>
           </div>
         </div>

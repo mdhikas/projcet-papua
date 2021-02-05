@@ -6,20 +6,25 @@ use CodeIgniter\Controller;
 
 use App\Models\Master\SemesterModel;
 
-class SemesterController extends Controller {
+class SemesterController extends Controller
+{
   protected $semester_model;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->semester_model = new SemesterModel();
   }
 
-  public function index() {
+  public function index()
+  {
+    $data['title'] = 'Data Semester';
     $data['js'] = 'semester.js';
 
     return view('master/semester/semester_view', $data);
   }
 
-  public function store() {
+  public function store()
+  {
     $kode_semester = $_POST['kode_semester'];
     $keterangan = $_POST['keterangan'];
 
@@ -33,7 +38,8 @@ class SemesterController extends Controller {
     }
   }
 
-  public function update() {
+  public function update()
+  {
     $kode_semester = $_POST['kode_semester'];
     $keterangan = $_POST['keterangan'];
 
@@ -47,7 +53,8 @@ class SemesterController extends Controller {
     }
   }
 
-  public function destroy() {
+  public function destroy()
+  {
     $kode_semester = $_POST['kode_semester'];
 
     if ($this->semester_model->delete($kode_semester)) {
@@ -57,7 +64,8 @@ class SemesterController extends Controller {
     }
   }
 
-  public function get_records() {
+  public function get_records()
+  {
     $semester_model = $this->semester_model;
     $where = ['kode_semester !=' => ''];
     $column_order   = array('', 'kode_semester', 'keterangan', '');
@@ -75,9 +83,9 @@ class SemesterController extends Controller {
       $row    = array();
 
       $kode_semester = "'" . $list['kode_semester'] . "'";
-      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_semester="'.$list['kode_semester'].'" data-keterangan="'.$list['keterangan'].'" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
+      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_semester="' . $list['kode_semester'] . '" data-keterangan="' . $list['keterangan'] . '" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
 
-      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy('.$kode_semester.')"><i class="fas fa-trash-alt"></i></button>';
+      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy(' . $kode_semester . ')"><i class="fas fa-trash-alt"></i></button>';
 
       $row[]  = $start;
       $row[]  = $list['kode_semester'];
@@ -88,15 +96,15 @@ class SemesterController extends Controller {
     }
 
     $sEcho = 1;
-		if (isset($_POST['draw'])) {
-			$sEcho = intval($_POST['draw']);
-		}
+    if (isset($_POST['draw'])) {
+      $sEcho = intval($_POST['draw']);
+    }
 
     $output = array(
-        "draw" => $sEcho,
-        "recordsTotal" => $semester_model->count_all('semester', $where),
-        "recordsFiltered" => $semester_model->count_filtered('semester', $column_order, $column_search, $order, $where),
-        "data" => $data,
+      "draw" => $sEcho,
+      "recordsTotal" => $semester_model->count_all('semester', $where),
+      "recordsFiltered" => $semester_model->count_filtered('semester', $column_order, $column_search, $order, $where),
+      "data" => $data,
     );
 
     echo json_encode($output);

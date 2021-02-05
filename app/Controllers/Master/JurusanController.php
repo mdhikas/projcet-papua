@@ -7,23 +7,28 @@ use CodeIgniter\Controller;
 use App\Models\Master\JurusanModel;
 use App\Models\Master\FakultasModel;
 
-class JurusanController extends Controller {
+class JurusanController extends Controller
+{
   protected $jurusan_model;
   protected $fakultas_model;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->jurusan_model = new JurusanModel();
     $this->fakultas_model = new FakultasModel();
   }
 
-  public function index() {
+  public function index()
+  {
+    $data['title'] = 'Data Jurusan';
     $data['js'] = 'jurusan.js';
     $data['fakultas'] = $this->fakultas_model->findAll();
 
     return view('master/jurusan/jurusan_view', $data);
   }
 
-  public function store() {
+  public function store()
+  {
     $kode_jurusan = $_POST['kode_jurusan'];
     $jenjang = $_POST['jenjang'];
     $nama_jurusan = $_POST['nama_jurusan'];
@@ -41,7 +46,8 @@ class JurusanController extends Controller {
     }
   }
 
-  public function update() {
+  public function update()
+  {
     $kode_jurusan = $_POST['kode_jurusan'];
     $jenjang = $_POST['jenjang'];
     $nama_jurusan = $_POST['nama_jurusan'];
@@ -59,7 +65,8 @@ class JurusanController extends Controller {
     }
   }
 
-  public function destroy() {
+  public function destroy()
+  {
     $kode_jurusan = $_POST['kode_jurusan'];
 
     if ($this->jurusan_model->delete($kode_jurusan)) {
@@ -69,7 +76,8 @@ class JurusanController extends Controller {
     }
   }
 
-  public function get_records() {
+  public function get_records()
+  {
     $jurusan_model = $this->jurusan_model;
     $where = ['kode_jurusan !=' => ''];
     $column_order   = array('', 'kode_jurusan', 'jenjang' . ' ' . 'nama_jurusan', 'kode_fakultas', '');
@@ -81,16 +89,16 @@ class JurusanController extends Controller {
     if (isset($_POST['start'])) {
       $start = $_POST['start'];
     }
-    
+
     foreach ($lists as $list) {
       $start++;
       $row    = array();
 
       $kode_jurusan = "'" . $list['kode_jurusan'] . "'";
 
-      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_fakultas="'.$list['kode_fakultas'].'" data-kode_jurusan="'.$list['kode_jurusan'].'" data-jenjang="'.$list['jenjang'].'" data-nama_jurusan="'.$list['nama_jurusan'].'" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
+      $btn_edit = '<a href="javascript:void(0)" class="btn btn-warning btn-sm btn-edit" data-kode_fakultas="' . $list['kode_fakultas'] . '" data-kode_jurusan="' . $list['kode_jurusan'] . '" data-jenjang="' . $list['jenjang'] . '" data-nama_jurusan="' . $list['nama_jurusan'] . '" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
 
-      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy('.$kode_jurusan.')"><i class="fas fa-trash-alt"></i></button>';
+      $btn_delete = '<button type="button" class="btn btn-danger btn-delete btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy(' . $kode_jurusan . ')"><i class="fas fa-trash-alt"></i></button>';
 
       $row[]  = $start;
       $row[]  = $list['kode_jurusan'];
@@ -102,15 +110,15 @@ class JurusanController extends Controller {
     }
 
     $sEcho = 1;
-		if (isset($_POST['draw'])) {
-			$sEcho = intval($_POST['draw']);
-		}
+    if (isset($_POST['draw'])) {
+      $sEcho = intval($_POST['draw']);
+    }
 
     $output = array(
-        "draw" => $sEcho,
-        "recordsTotal" => $jurusan_model->count_all('jurusan', $where),
-        "recordsFiltered" => $jurusan_model->count_filtered('jurusan', $column_order, $column_search, $order, $where),
-        "data" => $data,
+      "draw" => $sEcho,
+      "recordsTotal" => $jurusan_model->count_all('jurusan', $where),
+      "recordsFiltered" => $jurusan_model->count_filtered('jurusan', $column_order, $column_search, $order, $where),
+      "data" => $data,
     );
 
     echo json_encode($output);

@@ -1,21 +1,21 @@
 let matkul_table;
 let field_counter = 1;
 
-$(document).ready(function() {
+$(document).ready(function () {
   get_records();
   check_field_counter();
 
-  $('#form-store-matkul').on('submit', function(e) {
+  $('#form-store-matkul').on('submit', function (e) {
     e.preventDefault();
     store();
   });
 
-  $('#form-update-matkul').on('submit', function(e) {
+  $('#form-update-matkul').on('submit', function (e) {
     e.preventDefault();
     update();
   });
 
-  $(document).on('click', '.btn-edit', function() {
+  $(document).on('click', '.btn-edit', function () {
     $('#modal-edit').modal('toggle');
     const kode_jurusan = $(this).data('kode_jurusan');
     const kode_mk = $(this).data('kode_mk');
@@ -40,9 +40,9 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-        url: base_url() + '/matkul/get_records',
-        type: 'POST',
-        data: {}
+      url: base_url() + '/matkul/get_records',
+      type: 'POST',
+      data: {}
     },
     columnDefs: [
       {
@@ -67,8 +67,8 @@ function store() {
     type: 'POST',
     data: $('#form-store-matkul').serialize(),
     dataType: 'JSON',
-    success: function(res) {
-      
+    success: function (res) {
+
       $('#modal').modal('toggle');
       $('#form-store-matkul').trigger('reset');
       $('#additional-field').html('');
@@ -85,7 +85,7 @@ function store() {
         text: 'Data berhasil disimpan',
       });
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText);
     }
   });
@@ -136,7 +136,7 @@ function destroy(kode_matkul) {
         type: 'POST',
         data: { kode_matkul },
         dataType: 'JSON',
-        success: function(res) {
+        success: function (res) {
           if (res.status === 1) {
             matkul_table.ajax.reload();
             Swal.fire({
@@ -152,7 +152,7 @@ function destroy(kode_matkul) {
             });
           }
         },
-        error: function(err) {
+        error: function (err) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

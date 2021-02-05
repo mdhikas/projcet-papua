@@ -20,7 +20,7 @@
 
   <section class="content">
     <div class="row">
-      <div class="col-9">
+      <div class="col">
         <div class="card">
           <div class="card-header">
             <button type="button" data-toggle="modal" data-target="#modal" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Data Fakultas</button>
@@ -36,7 +36,7 @@
                 </tr>
               </thead>
               <tbody>
-                    
+
               </tbody>
               <tfoot>
                 <tr>
@@ -49,7 +49,7 @@
             </table>
           </div>
         </div>
-      
+
       </div>
     </div>
   </section>

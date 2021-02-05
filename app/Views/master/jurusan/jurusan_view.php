@@ -20,7 +20,7 @@
 
   <section class="content">
     <div class="row">
-      <div class="col-10">
+      <div class="col">
         <div class="card">
           <div class="card-header">
             <button type="button" data-toggle="modal" data-target="#modal" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Data Jurusan</button>
@@ -37,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-                    
+
               </tbody>
               <tfoot>
                 <tr>
@@ -51,7 +51,7 @@
             </table>
           </div>
         </div>
-      
+
       </div>
     </div>
   </section>
@@ -64,7 +64,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      <form id="form-store-jurusan">
+        <form id="form-store-jurusan">
           <div class="modal-body">
             <div class="form-group">
               <label for="">Kode Jurusan</label>

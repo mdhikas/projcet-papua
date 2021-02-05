@@ -20,7 +20,7 @@
 
   <section class="content">
     <div class="row">
-      <div class="col-12">
+      <div class="col">
         <div class="card">
           <div class="card-header">
             <button type="button" data-toggle="modal" data-target="#modal" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Data Mata Kuliah</button>
@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody>
-                    
+
               </tbody>
               <tfoot>
                 <tr>
@@ -53,7 +53,7 @@
             </table>
           </div>
         </div>
-      
+
       </div>
     </div>
   </section>
@@ -70,7 +70,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="">Kode Jurusan</label>
-              
+
               <select name="kode_jurusan" class="form-control select2" style="width: 100%" required>
                 <option selected disabled>-- Pilih Jurusan --</option>
                 <?php foreach ($jurusan as $key) : ?>

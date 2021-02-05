@@ -8,7 +8,7 @@ $routes = Services::routes();
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
-	require SYSTEMPATH . 'Config/Routes.php';
+  require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /**
@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Pages');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -32,24 +32,39 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
-$routes->get('/', 'Pages::index');
-$routes->get('/home', 'Pages::index');
-$routes->get('/nilai', 'Pages::nilai');
-$routes->get('/nilai/nilai_mhs', 'Pages::nilai_mhs');
 
-$routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function ($routes) {
-	$routes->get('/', 'MahasiswaController::index');
-	$routes->get('create', 'MahasiswaController::create');
-	$routes->post('store', 'MahasiswaController::store');
-	$routes->get('edit/(:num)', 'MahasiswaController::edit/$1');
-	$routes->post('update', 'MahasiswaController::update');
-	$routes->post('destroy', 'MahasiswaController::destroy');
-	$routes->post('get_records', 'MahasiswaController::get_records');
+$routes->group('dashboard', ['namespace' => '\App\Controllers'], function ($routes) {
+  $routes->get('/', 'Pages::index');
 });
 
-$routes->group('master', ['namespace' => '\App\Controllers\Master'], function($routes) {
-  
-  $routes->group('fakultas', ['namespace' => '\App\Controllers\Master'], function($routes) {
+$routes->group('admin', ['namespace' => '\App\Controllers\Admin'], function ($routes) {
+  $routes->get('/', 'AdminController::index');
+  $routes->get('create', 'AdminController::create');
+  $routes->post('save', 'AdminController::save');
+  $routes->get('edit/(:num)', 'AdminController::edit/$1');
+  $routes->post('update', 'AdminController::update');
+  $routes->get('delete', 'AdminController::delete');
+});
+
+$routes->group('user', ['namespace' => '\App\Controllers\User'], function ($routes) {
+  $routes->get('/', 'UserController::index');
+});
+
+
+
+$routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function ($routes) {
+  $routes->get('/', 'MahasiswaController::index');
+  $routes->get('create', 'MahasiswaController::create');
+  $routes->post('store', 'MahasiswaController::store');
+  $routes->get('edit/(:num)', 'MahasiswaController::edit/$1');
+  $routes->post('update', 'MahasiswaController::update');
+  $routes->post('destroy', 'MahasiswaController::destroy');
+  $routes->post('get_records', 'MahasiswaController::get_records');
+});
+
+$routes->group('master', ['namespace' => '\App\Controllers\Master'], function ($routes) {
+
+  $routes->group('fakultas', ['namespace' => '\App\Controllers\Master'], function ($routes) {
     $routes->get('/', 'FakultasController::index');
     $routes->post('store', 'FakultasController::store');
     $routes->post('update', 'FakultasController::update');
@@ -57,7 +72,7 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
     $routes->post('get_records', 'FakultasController::get_records');
   });
 
-  $routes->group('jurusan', ['namespace' => '\App\Controllers\Master'], function($routes) {
+  $routes->group('jurusan', ['namespace' => '\App\Controllers\Master'], function ($routes) {
     $routes->get('/', 'JurusanController::index');
     $routes->post('store', 'JurusanController::store');
     $routes->post('update', 'JurusanController::update');
@@ -65,7 +80,7 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
     $routes->post('get_records', 'JurusanController::get_records');
   });
 
-  $routes->group('matkul', ['namespace' => '\App\Controllers\Master'], function($routes) {
+  $routes->group('matkul', ['namespace' => '\App\Controllers\Master'], function ($routes) {
     $routes->get('/', 'MataKuliahController::index');
     $routes->post('store', 'MataKuliahController::store');
     $routes->post('update', 'MataKuliahController::update');
@@ -73,14 +88,13 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
     $routes->post('get_records', 'MataKuliahController::get_records');
   });
 
-  $routes->group('semester', ['namespace' => '\App\Controllers\Master'], function($routes) {
+  $routes->group('semester', ['namespace' => '\App\Controllers\Master'], function ($routes) {
     $routes->get('/', 'SemesterController::index');
     $routes->post('store', 'SemesterController::store');
     $routes->post('update', 'SemesterController::update');
     $routes->post('destroy', 'SemesterController::destroy');
     $routes->post('get_records', 'SemesterController::get_records');
   });
-
 });
 
 /**
@@ -97,5 +111,5 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function($r
  * needing to reload it.
  */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+  require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

@@ -23,12 +23,14 @@ class MahasiswaController extends Controller
 
   public function index()
   {
+    $data['title'] = 'Data Mahasiswa';
     $data['js'] = 'mahasiswa.js';
     return view('mahasiswa/mahasiswa_view', $data);
   }
 
   public function create()
   {
+    $data['title'] = 'Tambah Data Mahasiswa';
     $data['js'] = 'mahasiswa.js';
     $data['jurusan'] = $this->jurusan_model->findAll();
 
@@ -66,6 +68,7 @@ class MahasiswaController extends Controller
   {
     $nim = $this->uri->getSegment(3);
 
+    $data['title'] = 'Ubah Data Mahasiswa';
     $data['js'] = 'mahasiswa.js';
     $data['jurusan'] = $this->jurusan_model->findAll();
     $data['mahasiswa'] = $this->mahasiswa_model->find($nim);
