@@ -19,6 +19,14 @@ class MahasiswaModel extends Model
     $this->db = \Config\Database::connect();
   }
 
+  public function get_mahasiswa_by_nim($nim)
+  {
+    $this->builder = $this->db->table($this->table);
+    $this->builder->like('nim', $nim);
+    $query = $this->builder->get();
+    return $query->getResultArray();
+  }
+
   protected function _get_datatables_query($table, $column_order, $column_search, $order)
   {
     $this->builder = $this->db->table($table);

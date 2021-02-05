@@ -114,6 +114,35 @@ class MahasiswaController extends Controller
     }
   }
 
+  public function get_mahasiswa_by_nim()
+  {
+    $nim = $_POST['query'];
+
+    $data = $this->mahasiswa_model->get_mahasiswa_by_nim($nim);
+    $output = "";
+    $output .= '<ul class="list-group">';
+    if ($data) {
+      foreach ($data as $k => $v) {
+        $temp_nim = "'" . $v['nim'] . "'";
+        $output .= '<li class="list-group-item"><a href="javascript:void(0)" class="nim" onclick="get_nama_mahasiswa(' . $temp_nim . ')">' . $v['nim'] . '</a></li>';
+      }
+    } else {
+      $output .= '<li class="list-group-item">Data Tidak Ditemukan</li>';
+    }
+    $output .= '</ul>';
+
+    return json_encode(['data' => $output]);
+  }
+
+  public function get_nama_mahasiswa_by_nim()
+  {
+    $nim = $_POST['nim'];
+
+    $mahasiswa = $this->mahasiswa_model->select('nama')->find($nim);
+
+    return json_encode(['nama' => $mahasiswa['nama']]);
+  }
+
   public function get_records()
   {
     $mahasiswa_model = $this->mahasiswa_model;

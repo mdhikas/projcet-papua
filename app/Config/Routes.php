@@ -60,6 +60,14 @@ $routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function ($rout
   $routes->post('update', 'MahasiswaController::update');
   $routes->post('destroy', 'MahasiswaController::destroy');
   $routes->post('get_records', 'MahasiswaController::get_records');
+  $routes->post('search_nim', 'MahasiswaController::get_mahasiswa_by_nim');
+  $routes->post('get_nama_mahasiswa_by_nim', 'MahasiswaController::get_nama_mahasiswa_by_nim');
+
+  $routes->group('nilai', ['namespace' => '\App\Controllers'], function($routes) {
+    $routes->get('/', 'NilaiMahasiswaController::index');
+    $routes->get('create', 'NilaiMahasiswaController::create');
+    $routes->post('store', 'NilaiMahasiswaController::store');
+  });
 });
 
 $routes->group('master', ['namespace' => '\App\Controllers\Master'], function ($routes) {
@@ -86,6 +94,8 @@ $routes->group('master', ['namespace' => '\App\Controllers\Master'], function ($
     $routes->post('update', 'MataKuliahController::update');
     $routes->post('destroy', 'MataKuliahController::destroy');
     $routes->post('get_records', 'MataKuliahController::get_records');
+    $routes->get('search_kode_mk', 'MataKuliahController::get_matkul_by_kode_mk');
+    $routes->get('get_nama_matkul_by_kode_mk', 'MataKuliahController::get_nama_matkul_by_kode_mk');
   });
 
   $routes->group('semester', ['namespace' => '\App\Controllers\Master'], function ($routes) {

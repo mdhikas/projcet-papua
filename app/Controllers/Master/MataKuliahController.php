@@ -76,6 +76,35 @@ class MataKuliahController extends Controller
     }
   }
 
+  public function get_matkul_by_kode_mk()
+  {
+    $kode_mk = $_GET['query'];
+    $index = $_GET['index'];
+
+    $data = $this->matkul_model->get_matkul_by_kode_mk($kode_mk);
+
+    $output = "";
+    $output .= '<ul class="list-group">';
+    if ($data) {
+      foreach ($data as $k => $v) {
+        $temp_kode_mk = "'" . $v['kode_mk'] . "'";
+        $output .= '<li class="list-group-item"><a href="javascript:void(0)" onclick="get_nama_matkul(' . $index . ', ' . $temp_kode_mk . ')">' . $v['kode_mk'] . '</a></li>';
+      }
+    } else {
+      $output .= '<li class="list-group-item">Data Tidak Ditemukan</li>';
+    }
+    $output .= '</ul>';
+
+    return json_encode(['data' => $output]);
+  }
+
+  public function get_nama_matkul_by_kode_mk()
+  {
+    $kode_mk = $_GET['kode_mk'];
+    $matkul = $this->matkul_model->select('nama_mk, jumlah_sks')->find($kode_mk);
+    return json_encode(['nama_mk' => $matkul['nama_mk'], 'sks' => $matkul['jumlah_sks']]);
+  }
+
   public function get_records()
   {
     $matkul_model = $this->matkul_model;
