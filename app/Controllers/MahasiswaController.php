@@ -121,7 +121,7 @@ class MahasiswaController extends Controller {
 
     return json_encode(['data' => $output]);
   }
-  
+    
   public function get_nama_mahasiswa_by_nim() {
     $nim = $_POST['nim'];
 

@@ -27,7 +27,36 @@
             <a href="<?= base_url('mahasiswa/nilai/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Nilai Mahasiswa</a>
           </div>
           <div class="card-body">
-            <table id="data-table" class="table table-bordered table-striped" width="100%">
+            <input type="number" class="form-control" name="nim" id="nim1" autocomplete="off" placeholder="NIM Mahasiswa" required>
+            <div id="result_nim"></div>
+
+            <div class="card mt-3" id="result_table_nilai" style="display: none;">
+              <div class="card-body">
+                <b><span id="label_nim">NIM</span> - <span id="label_nama">NAMA</span></b>
+                <table class="table table-bordered mt-2">
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Semester</th>
+                      <th>Total SKS</th>
+                      <th>Total Bobot</th>
+                      <th>IPS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="list-nilai">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- <form action="">
+              <div class="input-group input-group-sm">
+                <input type="text" id="nim" name="nim" class="form-control" placeholder="Cari NIM">
+                <span class="input-group-append">
+                  <button type="button" class="btn btn-info btn-flat">Cari</button>
+                </span>
+              </div>
+            </form> -->
+            <!-- <table id="data-table" class="table table-bordered table-striped" width="100%">
               <thead>
                 <tr>
                   <th>#</th>
@@ -51,10 +80,10 @@
                   <th>Actions</th>
                 </tr>
               </tfoot>
-            </table>
+            </table> -->
           </div>
         </div>
-      
+
       </div>
     </div>
   </section>

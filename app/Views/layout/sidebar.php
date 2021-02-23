@@ -34,7 +34,7 @@
             </li>
             <li class="nav-item">
               <a href="<?= base_url('mahasiswa/nilai') ?>" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+                <i class="nav-icon fas fa-list"></i>
                 <p>
                   Nilai Mahasiswa
                 </p>
