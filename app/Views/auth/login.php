@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url(); ?>/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/css/sb-admin-2.css">
 </head>
 
 <body class="hold-transition login-page">
@@ -71,7 +72,7 @@
                         <?php if ($config->allowRemembering) : ?>
                             <div class="col-8">
                                 <div class="icheck-primary">
-                                    <input type="checkbox" <?php if (old('remember')) : ?> checked <?php endif ?> name="remember">
+                                    <input type="checkbox" <?php if (old('remember')) : ?> checked <?php endif ?> name="remember" id="remember">
                                     <label for="remember">
                                         <?= lang('Auth.rememberMe') ?>
                                     </label>

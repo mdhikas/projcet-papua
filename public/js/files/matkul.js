@@ -40,7 +40,7 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-      url: base_url() + '/matkul/get_records',
+      url: './matkul/get_records',
       type: 'POST',
       data: {}
     },
@@ -121,7 +121,7 @@ function update() {
 
 function destroy(kode_matkul) {
   Swal.fire({
-    title: 'Apakah kamu yakin?',
+    title: 'Apakah kamu yakin ?',
     text: "Data ini tidak dapat dikembalikan!",
     icon: 'warning',
     showCancelButton: true,

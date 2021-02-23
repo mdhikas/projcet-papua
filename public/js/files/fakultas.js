@@ -1,17 +1,17 @@
 let fakultas_table;
 
-$(document).ready(function() {
-  $('#form-store-fakultas').on('submit', function(e) {
+$(document).ready(function () {
+  $('#form-store-fakultas').on('submit', function (e) {
     e.preventDefault();
     store();
   });
 
-  $('#form-update-fakultas').on('submit', function(e) {
+  $('#form-update-fakultas').on('submit', function (e) {
     e.preventDefault();
     update();
   });
 
-  $(document).on('click', '.btn-edit', function() {
+  $(document).on('click', '.btn-edit', function () {
     $('#modal-edit').modal('toggle');
     const kode_fakultas = $(this).data('kode_fakultas');
     const nama_fakultas = $(this).data('nama_fakultas');
@@ -20,7 +20,7 @@ $(document).ready(function() {
     $('#modal-edit input[name="nama_fakultas"]').val(nama_fakultas);
   });
 
-  $(document).on('click', '.btn-delete', function() {
+  $(document).on('click', '.btn-delete', function () {
     const kode_fakultas = $(this).data('kode_fakultas');
     destroy(kode_fakultas);
   });
@@ -47,7 +47,7 @@ function store() {
     type: 'POST',
     data: $('#form-store-fakultas').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#modal').modal('toggle');
       $('#form-store-fakultas').trigger('reset');
       if (res.status === 1) {
@@ -65,7 +65,7 @@ function store() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText)
     }
   });
@@ -74,7 +74,7 @@ function store() {
 function update() {
   const kode_fakultas = $('#modal-edit input[name="kode_fakultas"]').val();
   const nama_fakultas = $('#modal-edit input[name="nama_fakultas"]').val();
-  
+
   if (kode_fakultas === "") {
     error_validation('Kode fakultas harus diisi');
     return false;
@@ -90,7 +90,7 @@ function update() {
     type: 'POST',
     data: $('#form-update-fakultas').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#modal-edit').modal('toggle');
       $('#form-update-fakultas').trigger('reset');
       if (res.status === 1) {
@@ -108,7 +108,7 @@ function update() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText)
     }
   });
@@ -116,7 +116,7 @@ function update() {
 
 function destroy(kode_fakultas) {
   Swal.fire({
-    title: 'Apakah kamu yakin?',
+    title: 'Apakah kamu yakin ?',
     text: "Data ini tidak dapat dikembalikan!",
     icon: 'warning',
     showCancelButton: true,
@@ -124,13 +124,13 @@ function destroy(kode_fakultas) {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Hapus',
     cancelButtonText: 'Batal'
-  }).then((result) => {   
+  }).then((result) => {
     $.ajax({
       url: 'fakultas/destroy',
       type: 'POST',
       data: { kode_fakultas },
       dataType: 'JSON',
-      success: function(res) {
+      success: function (res) {
         if (res.status === 1) {
           fakultas_table.ajax.reload();
           Swal.fire({
@@ -146,7 +146,7 @@ function destroy(kode_fakultas) {
           });
         }
       },
-      error: function(err) {
+      error: function (err) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -168,9 +168,9 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-        url: './fakultas/get_records',
-        type: 'POST',
-        data: {}
+      url: './fakultas/get_records',
+      type: 'POST',
+      data: {}
     },
     columnDefs: [
       {

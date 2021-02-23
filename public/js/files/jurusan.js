@@ -1,20 +1,20 @@
 let jurusan_table
 
-$(document).ready(function() {
+$(document).ready(function () {
   get_records();
 
-  $('#form-store-jurusan').on('submit', function(e) {
+  $('#form-store-jurusan').on('submit', function (e) {
     e.preventDefault();
-    
+
     store();
   });
 
-  $('#form-update-jurusan').on('submit', function(e) {
+  $('#form-update-jurusan').on('submit', function (e) {
     e.preventDefault();
     update();
   });
 
-  $(document).on('click', '.btn-edit', function() {
+  $(document).on('click', '.btn-edit', function () {
     $('#modal-edit').modal('toggle');
     const kode_fakultas = $(this).data('kode_fakultas');
     const kode_jurusan = $(this).data('kode_jurusan');
@@ -59,7 +59,7 @@ function store() {
     type: 'POST',
     data: $('#form-store-jurusan').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#modal').modal('toggle');
       $('#form-store-jurusan').trigger('reset');
       $('.select2').val([]).trigger('change');
@@ -82,7 +82,7 @@ function store() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText)
     }
   });
@@ -118,7 +118,7 @@ function update() {
 
 function destroy(kode_jurusan) {
   Swal.fire({
-    title: 'Apakah kamu yakin?',
+    title: 'Apakah kamu yakin ?',
     text: "Data ini tidak dapat dikembalikan!",
     icon: 'warning',
     showCancelButton: true,
@@ -133,7 +133,7 @@ function destroy(kode_jurusan) {
         type: 'POST',
         data: { kode_jurusan },
         dataType: 'JSON',
-        success: function(res) {
+        success: function (res) {
           if (res.status === 1) {
             jurusan_table.ajax.reload();
             Swal.fire({
@@ -149,7 +149,7 @@ function destroy(kode_jurusan) {
             });
           }
         },
-        error: function(err) {
+        error: function (err) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -172,9 +172,9 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-        url: './jurusan/get_records',
-        type: 'POST',
-        data: {}
+      url: './jurusan/get_records',
+      type: 'POST',
+      data: {}
     },
     columnDefs: [
       {

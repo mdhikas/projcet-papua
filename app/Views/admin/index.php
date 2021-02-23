@@ -15,8 +15,15 @@
                     </ol>
                 </div>
             </div>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
+
+    <div class="swal" data-swal="<?= session()->get('pesan'); ?>"></div>
 
     <section class="content">
         <div class="row">
@@ -44,11 +51,21 @@
                                         <td><?= $i++; ?></td>
                                         <td><?= $user->username; ?></td>
                                         <td><?= $user->email; ?></td>
-
-                                        <td><?= $user->name; ?></td>
+                                        <?php if (!($user->name == null)) : ?>
+                                            <td><?= $user->name; ?></td>
+                                        <?php else : ?>
+                                            <td></td>
+                                        <?php endif; ?>
                                         <td>
-                                            <a href="<?= base_url('admin/edit/' . $user->userid); ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" onclick="return confirm('Yakin ?')"></i></button>
+                                            <?php if ($user->name == 'superadmin') : ?>
+                                            <?php else : ?>
+                                                <a href="<?= base_url('admin/edit/' . $user->userid); ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                                <form action="<?= base_url('admin/delete/' . $user->userid); ?>" method="POST" id="form-delete-data" class="d-inline">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    <button type="submit" class="btn btn-danger btn-hapus"><i class="fas fa-trash-alt"></i></button>
+                                                </form>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

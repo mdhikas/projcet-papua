@@ -1,16 +1,16 @@
 let mahasiswa_table;
 
-$(document).ready(function() {
+$(document).ready(function () {
   show_records();
 
-  $('#form-store-mahasiswa').on('submit', function(e) {
+  $('#form-store-mahasiswa').on('submit', function (e) {
     e.preventDefault();
-    
+
     form_validation();
 
   });
 
-  $('#form-update-mahasiswa').on('submit', function(e) {
+  $('#form-update-mahasiswa').on('submit', function (e) {
     e.preventDefault();
 
     const nim = $('input[name="nim"]').val();
@@ -20,11 +20,11 @@ $(document).ready(function() {
     const email = $('input[name="email"]').val();
     const jenis_kelamin = $('select[name="jenis_kelamin"]').val();
     const jurusan = $('select[name="jurusan"]').val();
-    
+
     if (nim === "") {
       error_validation('N.I.M harus diisi');
       return false;
-    } 
+    }
 
     if (nama === "") {
       error_validation('Nama harus diisi');
@@ -35,7 +35,7 @@ $(document).ready(function() {
       error_validation('Tempat lahir harus diisi');
       return false;
     }
-      
+
     if (tanggal_lahir === "") {
       error_validation('Tanggal lahir harus diisi');
       return false;
@@ -50,7 +50,7 @@ $(document).ready(function() {
       error_validation('Jenis kelamin harus dipilih');
       return false;
     }
-    
+
     if (jurusan === "" || jurusan === null) {
       error_validation('Jurusan harus dipilih');
       return false;
@@ -71,9 +71,9 @@ function show_records() {
     responsive: true,
     order: [],
     ajax: {
-        url: './mahasiswa/get_records',
-        type: 'POST',
-        data: {}
+      url: './mahasiswa/get_records',
+      type: 'POST',
+      data: {}
     },
     columnDefs: [
       {
@@ -100,11 +100,11 @@ function form_validation() {
   const email = $('input[name="email"]').val();
   const jenis_kelamin = $('select[name="jenis_kelamin"]').val();
   const jurusan = $('select[name="jurusan"]').val();
-  
+
   if (nim === "") {
     error_validation('N.I.M harus diisi');
     return false;
-  } 
+  }
 
   if (nama === "") {
     error_validation('Nama harus diisi');
@@ -115,7 +115,7 @@ function form_validation() {
     error_validation('Tempat lahir harus diisi');
     return false;
   }
-    
+
   if (tanggal_lahir === "") {
     error_validation('Tanggal lahir harus diisi');
     return false;
@@ -130,7 +130,7 @@ function form_validation() {
     error_validation('Jenis kelamin harus dipilih');
     return false;
   }
-  
+
   if (jurusan === "" || jurusan === null) {
     error_validation('Jurusan harus dipilih');
     return false;
@@ -145,13 +145,13 @@ function store() {
     type: 'POST',
     data: $('#form-store-mahasiswa').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       if (res.status === 1) {
         Swal.fire({
           icon: 'success',
           title: 'Good Job',
           text: 'Data berhasil disimpan',
-        }).then(function() {
+        }).then(function () {
           window.location.href = '../mahasiswa';
         });
       } else {
@@ -162,7 +162,7 @@ function store() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText);
     }
   });
@@ -174,13 +174,13 @@ function update() {
     type: 'POST',
     data: $('#form-update-mahasiswa').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       if (res.status === 1) {
         Swal.fire({
           icon: 'success',
           title: 'Good Job',
           text: 'Data berhasil disimpan',
-        }).then(function() {
+        }).then(function () {
           window.location.href = '../../mahasiswa';
         });
       } else {
@@ -191,7 +191,7 @@ function update() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText);
     }
   });
@@ -199,7 +199,7 @@ function update() {
 
 function destroy(nim) {
   Swal.fire({
-    title: 'Apakah kamu yakin?',
+    title: 'Apakah kamu yakin ?',
     text: "Data ini tidak dapat dikembalikan!",
     icon: 'warning',
     showCancelButton: true,
@@ -207,13 +207,13 @@ function destroy(nim) {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Hapus',
     cancelButtonText: 'Batal'
-  }).then((result) => {   
+  }).then((result) => {
     $.ajax({
       url: './mahasiswa/destroy',
       type: 'POST',
       data: { nim },
       dataType: 'JSON',
-      success: function(res) {
+      success: function (res) {
         if (res.status === 1) {
           mahasiswa_table.ajax.reload();
           Swal.fire({
@@ -229,7 +229,7 @@ function destroy(nim) {
           });
         }
       },
-      error: function(err) {
+      error: function (err) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',

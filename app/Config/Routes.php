@@ -34,7 +34,7 @@ $routes->setAutoRoute(true);
 // $routes->get('/', 'Home::index');
 
 $routes->group('dashboard', ['namespace' => '\App\Controllers'], function ($routes) {
-  $routes->get('/', 'Pages::index');
+  $routes->get('/', 'Pages::index', ['filter => role:superadmin']);
 });
 
 $routes->group('admin', ['namespace' => '\App\Controllers\Admin'], function ($routes) {
@@ -42,12 +42,13 @@ $routes->group('admin', ['namespace' => '\App\Controllers\Admin'], function ($ro
   $routes->get('create', 'AdminController::create');
   $routes->post('save', 'AdminController::save');
   $routes->get('edit/(:num)', 'AdminController::edit/$1');
-  $routes->post('update', 'AdminController::update');
-  $routes->get('delete', 'AdminController::delete');
+  $routes->post('update/(:num)', 'AdminController::update/$1');
+  $routes->delete('delete/(:num)', 'AdminController::delete/$1');
 });
 
 $routes->group('user', ['namespace' => '\App\Controllers\User'], function ($routes) {
-  $routes->get('/', 'UserController::index');
+  $routes->get('profile/(:segment)', 'UserController::index/$1');
+  $routes->get('nilai/(:segment)', 'UserController::index/$1');
 });
 
 
@@ -63,7 +64,7 @@ $routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function ($rout
   $routes->post('search_nim', 'MahasiswaController::get_mahasiswa_by_nim');
   $routes->post('get_nama_mahasiswa_by_nim', 'MahasiswaController::get_nama_mahasiswa_by_nim');
 
-  $routes->group('nilai', ['namespace' => '\App\Controllers'], function($routes) {
+  $routes->group('nilai', ['namespace' => '\App\Controllers'], function ($routes) {
     $routes->get('/', 'NilaiMahasiswaController::index');
     $routes->get('create', 'NilaiMahasiswaController::create');
     $routes->post('store', 'NilaiMahasiswaController::store');

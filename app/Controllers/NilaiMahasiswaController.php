@@ -6,24 +6,31 @@ use CodeIgniter\Controller;
 
 use App\Models\NilaiMahasiswaModel;
 
-class NilaiMahasiswaController extends Controller {
+class NilaiMahasiswaController extends Controller
+{
   protected $nilai_model;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->nilai_model = new NilaiMahasiswaModel();
   }
-  
-  public function index() {
-    return view('mahasiswa/nilai_view');
+
+  public function index()
+  {
+    $data['title'] = 'Nilai';
+    return view('mahasiswa/nilai_view', $data);
   }
 
-  public function create() {
+  public function create()
+  {
+    $data['title'] = 'Tambah Nilai';
     $data['js'] = 'mahasiswa_nilai.js';
 
     return view('mahasiswa/nilai_create_view', $data);
   }
 
-  public function store() {
+  public function store()
+  {
 
     $nim = $_POST['nim'];
     $nama = $_POST['nama'];

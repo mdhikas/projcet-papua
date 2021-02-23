@@ -19,11 +19,18 @@ class Pages extends Controller
 
     public function index()
     {
-        $data['title'] = 'Papua';
-        $data['user'] = $this->user->countAllResults();
-        $data['mahasiswa'] = $this->mahasiswa->countAllResults();
 
-        return view('pages/dashboard', $data);
+        if (in_groups('superadmin')) {
+            $data['title'] = 'Papua | Admin';
+            $data['js'] = 'script_admin.js';
+            $data['user'] = $this->user->countAllResults();
+            $data['mahasiswa'] = $this->mahasiswa->countAllResults();
+            return view('pages/dashboard_admin', $data);
+        } else {
+            $data['title'] = 'Papua';
+            $data['js'] = 'script_user.js';
+            return view('pages/dashboard_user', $data);
+        }
     }
 
     // public function nilai()

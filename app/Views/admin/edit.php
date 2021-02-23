@@ -10,8 +10,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                        <li class="breadcrumb-item active">User List</li>
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="/admin">User List</a></li>
+                        <li class="breadcrumb-item active">Edit User</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +26,7 @@
                     <div class="card-header">
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('admin/update'); ?>" method="POST">
+                        <form action="<?= base_url('admin/update/' . $user->userid); ?>" method="POST">
                             <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label for="username">Username</label>

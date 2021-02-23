@@ -1,19 +1,19 @@
 let semester_table;
 
-$(document).ready(function() {
+$(document).ready(function () {
   get_records();
 
-  $('#form-store-semester').on('submit', function(e) {
+  $('#form-store-semester').on('submit', function (e) {
     e.preventDefault();
     store();
   });
 
-  $('#form-update-semester').on('submit', function(e) {
+  $('#form-update-semester').on('submit', function (e) {
     e.preventDefault();
     update();
   });
 
-  $(document).on('click', '.btn-edit', function() {
+  $(document).on('click', '.btn-edit', function () {
     $('#modal-edit').modal('toggle');
     const kode_semester = $(this).data('kode_semester');
     const keterangan = $(this).data('keterangan');
@@ -42,10 +42,10 @@ function store() {
     type: 'POST',
     data: $('#form-store-semester').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#modal').modal('toggle');
       $('#form-store-semester').trigger('reset');
-      
+
       if (res.status === 1) {
         semester_table.ajax.reload();
         Swal.fire({
@@ -61,7 +61,7 @@ function store() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText)
     }
   });
@@ -86,10 +86,10 @@ function update() {
     type: 'POST',
     data: $('#form-update-semester').serialize(),
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#modal-edit').modal('toggle');
       $('#form-update-semester').trigger('reset');
-      
+
       if (res.status === 1) {
         semester_table.ajax.reload();
         Swal.fire({
@@ -105,7 +105,7 @@ function update() {
         });
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err.responseText)
     }
   });
@@ -113,7 +113,7 @@ function update() {
 
 function destroy(kode_semester) {
   Swal.fire({
-    title: 'Apakah kamu yakin?',
+    title: 'Apakah kamu yakin ?',
     text: "Data ini tidak dapat dikembalikan!",
     icon: 'warning',
     showCancelButton: true,
@@ -128,7 +128,7 @@ function destroy(kode_semester) {
         type: 'POST',
         data: { kode_semester },
         dataType: 'JSON',
-        success: function(res) {
+        success: function (res) {
           if (res.status === 1) {
             semester_table.ajax.reload();
             Swal.fire({
@@ -144,7 +144,7 @@ function destroy(kode_semester) {
             });
           }
         },
-        error: function(err) {
+        error: function (err) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -167,9 +167,9 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-        url: base_url() + '/semester/get_records',
-        type: 'POST',
-        data: {}
+      url: './semester/get_records',
+      type: 'POST',
+      data: {}
     },
     columnDefs: [
       {

@@ -36,9 +36,6 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/home" class="nav-link">Home</a>
-                </li>
             </ul>
 
             <!-- Right navbar links -->
@@ -76,14 +73,12 @@
     <script src="<?= base_url(); ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="<?= base_url(); ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?= base_url(); ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <!-- Ionicon -->
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url(); ?>/js/adminlte.min.js"></script>
     <!-- Toastr -->
     <script src="<?= base_url(); ?>/plugins/toastr/toastr.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <!-- <script src="/js/demo.js"></script> -->
+    <!-- ChartJs -->
+    <script src="<?= base_url(); ?>/plugins/chart.js/Chart.min.js"></script>
     <script src="/js/helper.js"></script>
     <?php if (isset($js)) : ?>
         <script src="<?= base_url() ?>/js/files/<?= $js ?>"></script>
@@ -113,6 +108,27 @@
                 "responsive": true,
             });
         });
+    </script>
+    <script>
+        $(document).on('click', '.btn-logout', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Yakin ingin keluar ?',
+                text: "Anda akan diarahkan ke halaman Login",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Keluar',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.value) {
+                    document.location.href = href;
+                }
+            })
+        })
     </script>
 </body>
 
