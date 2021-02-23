@@ -32,6 +32,32 @@ $(document).ready(function() {
     }
   });
 
+  $('#nim1').keyup(function() {
+    let query = $(this).val();
+
+    if (query != "") {
+      $.ajax({
+        url: base_url() + '/mahasiswa/nilai/search_nim',
+        type: 'POST',
+        data: { query },
+        dataType: 'JSON',
+        beforeSend: function() {
+          $('#result_nim').html(`
+            <ul class="list-group">
+              <li class="list-group-item">Searching...</li>
+            </ul>
+          `);
+        },
+        success: function(res) {
+          $('#result_nim').html(res.data);
+        },
+        error: err => console.log(err)
+      });
+    } else {
+      $('#result_nim').html('');
+    }
+  });
+
   $('#form-store-nilai').on('submit', function(e) {
     e.preventDefault();
     $.ajax({
@@ -72,6 +98,25 @@ function get_nama_mahasiswa(nim) {
     dataType: 'JSON',
     success: function(res) {
       $('#nama').val(res.nama);
+    },
+    error: err => console.log(err)
+  });
+}
+
+function get_list_nilai_mahasiswa(nim) {
+  $('.list-group').css('display', 'none');
+  $('#result_table_nilai').css('display', 'block');
+  $('#nim1').val(nim);
+
+  $.ajax({
+    url: base_url() + '/mahasiswa/nilai/get_list_nilai_mahasiswa',
+    type: 'GET',
+    data: { nim },
+    dataType: 'JSON',
+    success: function (res) {
+      $('#label_nim').html(res.nim);
+      $('#label_nama').html(res.nama);
+      $('#list-nilai').html(res.data);
     },
     error: err => console.log(err)
   });
