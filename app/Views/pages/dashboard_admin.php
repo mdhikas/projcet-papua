@@ -1,8 +1,10 @@
 <?= $this->extend('layout/body'); ?>
 <?= $this->section('content'); ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+  <?php foreach ($tahun as $thn)
+    echo json_encode($thn);
+  ?>
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <?php if (session()->getFlashdata('pesan')) : ?>

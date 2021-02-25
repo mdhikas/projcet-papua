@@ -24,13 +24,19 @@
       <form role="form" id="form-store-mahasiswa">
         <div class="card-body">
           <div class="row">
-            <div class="col">
+            <div class="col-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Tahun</label>
+                <input type="number" class="form-control" name="tahun" placeholder="Tahun Angkatan">
+              </div>
+            </div>
+            <div class="col-3">
               <div class="form-group">
                 <label for="exampleInputEmail1">N.I.M</label>
                 <input type="number" class="form-control" name="nim" placeholder="NIM Mahasiswa">
               </div>
             </div>
-            <div class="col">
+            <div class="col-6">
               <div class="form-group">
                 <label for="exampleInputEmail1">Nama</label>
                 <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">

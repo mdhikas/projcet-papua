@@ -8,7 +8,7 @@ class MahasiswaModel extends Model
 {
   protected $table      = 'mahasiswa';
   protected $primaryKey = 'nim';
-  protected $allowedFields = ['nim', 'nama', 'tanggal_lahir', 'tempat_lahir', 'email', 'jenis_kelamin', 'nik', 'kode_jurusan'];
+  protected $allowedFields = ['nim', 'tahun', 'nama', 'tanggal_lahir', 'tempat_lahir', 'email', 'jenis_kelamin', 'nik', 'kode_jurusan'];
 
   protected $db;
   protected $builder;
@@ -87,5 +87,24 @@ class MahasiswaModel extends Model
     }
     $this->builder->from($table);
     return $this->builder->countAll();
+  }
+
+  public function get_tahun()
+  {
+    $this->builder = $this->db->table($this->table);
+    $this->builder->select('tahun');
+    $this->builder->groupBy('tahun');
+    $query = $this->builder->get();
+    return $query->getResult();
+  }
+
+  public function get_total_mhs_per_tahun()
+  {
+    $this->builder = $this->db->table($this->table);
+    // $this->builder->select('tahun');
+    $this->builder->select('nim');
+    $this->builder->groupBy('tahun');
+    $query = $this->builder->get();
+    return $query->getResultArray();
   }
 }

@@ -43,15 +43,15 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="<?= base_url('user/nilai'); ?>" class="nav-link">
+                <a href="<?= base_url('user/nilai/' . user()->nim); ?>" class="nav-link">
                   <i class="fas fa-archive nav-icon"></i>
                   <p>Nilai</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('user/nilai'); ?>" class="nav-link">
+                <a href="<?= base_url('user/skpi'); ?>" class="nav-link">
                   <i class="fas fa-file-alt nav-icon"></i>
-                  <p>Upload SKPI</p>
+                  <p>SKPI</p>
                 </a>
               </li>
             </ul>

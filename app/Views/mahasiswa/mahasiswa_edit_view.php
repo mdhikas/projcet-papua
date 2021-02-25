@@ -24,13 +24,19 @@
       <form role="form" id="form-update-mahasiswa">
         <div class="card-body">
           <div class="row">
-            <div class="col">
+            <div class="col-3">
               <div class="form-group">
-                <label for="exampleInputEmail1">N.I.M</label>
-                <input type="number" class="form-control" name="nim" value="<?= $mahasiswa['nim'] ?>" placeholder="NIM Mahasiswa" readonly>
+                <label for="exampleInputEmail1">Tahun</label>
+                <input type="number" class="form-control" name="tahun" value="<?= $mahasiswa['tahun'] ?>" placeholder="Tahun Angkatan">
               </div>
             </div>
-            <div class="col">
+            <div class="col-3">
+              <div class="form-group">
+                <label for="exampleInputEmail1">N.I.M</label>
+                <input type="number" class="form-control" name="nim" value="<?= $mahasiswa['nim'] ?>" placeholder="NIM Mahasiswa">
+              </div>
+            </div>
+            <div class="col-6">
               <div class="form-group">
                 <label for="exampleInputEmail1">Nama</label>
                 <input type="text" class="form-control" name="nama" value="<?= $mahasiswa['nama'] ?>" placeholder="Nama Mahasiswa">

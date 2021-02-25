@@ -33,7 +33,7 @@
                         <a href="<?= base_url('admin/create'); ?>" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Data User</a>
                     </div>
                     <div class="card-body">
-                        <table id="userList" class="table table-bordered table-striped" width="100%">
+                        <table id="table" class="table table-bordered table-striped" width="100%">
                             <thead>
                                 <tr>
                                     <th>#</th>

@@ -1,6 +1,7 @@
 var jml_mahasiswa = document.getElementById('chart-mhs').getContext('2d');
 var nil_mahasiswa = document.getElementById('chart-nil').getContext('2d');
 var ipk_mahasiswa = document.getElementById('chart-ipk').getContext('2d');
+
 var jumlah = new Chart(jml_mahasiswa, {
     type: 'line',
     data: {

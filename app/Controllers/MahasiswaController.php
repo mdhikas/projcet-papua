@@ -40,6 +40,7 @@ class MahasiswaController extends Controller
   public function store()
   {
     $nim = $_POST['nim'];
+    $tahun = $_POST['tahun'];
     $nama = $_POST['nama'];
     $tempat_lahir = $_POST['tempat_lahir'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
@@ -49,6 +50,7 @@ class MahasiswaController extends Controller
     $jurusan = $_POST['jurusan'];
 
     $data['nim'] = $nim;
+    $data['tahun'] = $tahun;
     $data['nama'] = $nama;
     $data['tempat_lahir'] = $tempat_lahir;
     $data['tanggal_lahir'] = $tanggal_lahir;
@@ -56,6 +58,9 @@ class MahasiswaController extends Controller
     $data['jenis_kelamin'] = $jenis_kelamin;
     $data['nik'] = $nik;
     $data['kode_jurusan'] = $jurusan;
+
+    // dd($data);
+    // echo json_encode($data);
 
     if ($this->mahasiswa_model->insert($data)) {
       return json_encode(['status' => 0]);
@@ -79,6 +84,7 @@ class MahasiswaController extends Controller
   public function update()
   {
     $nim = $_POST['nim'];
+    $tahun = $_POST['tahun'];
     $nama = $_POST['nama'];
     $tempat_lahir = $_POST['tempat_lahir'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
@@ -88,6 +94,7 @@ class MahasiswaController extends Controller
     $jurusan = $_POST['jurusan'];
 
     $data['nim'] = $nim;
+    $data['tahun'] = $tahun;
     $data['nama'] = $nama;
     $data['tempat_lahir'] = $tempat_lahir;
     $data['tanggal_lahir'] = $tanggal_lahir;

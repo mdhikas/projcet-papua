@@ -25,6 +25,8 @@ class Pages extends Controller
             $data['js'] = 'script_admin.js';
             $data['user'] = $this->user->countAllResults();
             $data['mahasiswa'] = $this->mahasiswa->countAllResults();
+            $data['tahun'] = $this->mahasiswa->get_tahun();
+            $data['jumlah'] = $this->mahasiswa->get_total_mhs_per_tahun();
             return view('pages/dashboard_admin', $data);
         } else {
             $data['title'] = 'Papua';

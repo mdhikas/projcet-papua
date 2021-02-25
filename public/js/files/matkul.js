@@ -63,7 +63,7 @@ function get_records() {
 
 function store() {
   $.ajax({
-    url: base_url() + '/matkul/store',
+    url: './matkul/store',
     type: 'POST',
     data: $('#form-store-matkul').serialize(),
     dataType: 'JSON',
@@ -132,7 +132,7 @@ function destroy(kode_matkul) {
   }).then((result) => {
     if (result.value) {
       $.ajax({
-        url: base_url() + '/matkul/destroy',
+        url: './matkul/destroy',
         type: 'POST',
         data: { kode_matkul },
         dataType: 'JSON',

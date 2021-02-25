@@ -14,6 +14,7 @@ $(document).ready(function () {
     e.preventDefault();
 
     const nim = $('input[name="nim"]').val();
+    const tahun = $('input[name="tahun"]').val();
     const nama = $('input[name="nama"]').val();
     const tempat_lahir = $('input[name="tempat_lahir"]').val();
     const tanggal_lahir = $('input[name="tanggal_lahir"]').val();
@@ -23,6 +24,11 @@ $(document).ready(function () {
 
     if (nim === "") {
       error_validation('N.I.M harus diisi');
+      return false;
+    }
+
+    if (tahun === "") {
+      error_validation('Tahun Angkatan harus diisi');
       return false;
     }
 
@@ -94,6 +100,7 @@ function show_records() {
 
 function form_validation() {
   const nim = $('input[name="nim"]').val();
+  const tahun = $('input[name="tahun"]').val();
   const nama = $('input[name="nama"]').val();
   const tempat_lahir = $('input[name="tempat_lahir"]').val();
   const tanggal_lahir = $('input[name="tanggal_lahir"]').val();
@@ -103,6 +110,11 @@ function form_validation() {
 
   if (nim === "") {
     error_validation('N.I.M harus diisi');
+    return false;
+  }
+
+  if (tahun === "") {
+    error_validation('Tahun Angkatan harus diisi');
     return false;
   }
 

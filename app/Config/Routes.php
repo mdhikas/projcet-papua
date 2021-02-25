@@ -48,7 +48,8 @@ $routes->group('admin', ['namespace' => '\App\Controllers\Admin'], function ($ro
 
 $routes->group('user', ['namespace' => '\App\Controllers\User'], function ($routes) {
   $routes->get('profile/(:segment)', 'UserController::index/$1');
-  $routes->get('nilai/(:segment)', 'UserController::index/$1');
+  $routes->get('nilai/(:segment)', 'UserController::nilai/$1');
+  $routes->get('skpi', 'UserController::skpi');
 });
 
 
