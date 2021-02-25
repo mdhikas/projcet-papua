@@ -207,35 +207,37 @@ function destroy(nim) {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Hapus',
     cancelButtonText: 'Batal'
-  }).then((result) => {   
-    $.ajax({
-      url: './mahasiswa/destroy',
-      type: 'POST',
-      data: { nim },
-      dataType: 'JSON',
-      success: function(res) {
-        if (res.status === 1) {
-          mahasiswa_table.ajax.reload();
-          Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: 'Data berhasil dihapus',
-          })
-        } else {
+  }).then((result) => {
+    if (result.value) {
+      $.ajax({
+        url: './mahasiswa/destroy',
+        type: 'POST',
+        data: { nim },
+        dataType: 'JSON',
+        success: function(res) {
+          if (res.status === 1) {
+            mahasiswa_table.ajax.reload();
+            Swal.fire({
+              icon: 'success',
+              title: 'Good Job',
+              text: 'Data berhasil dihapus',
+            })
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
+          }
+        },
+        error: function(err) {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Something went wrong!',
           });
         }
-      },
-      error: function(err) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-        });
-      }
-    });
+      });
+    }  
   })
 }
