@@ -88,6 +88,7 @@ class NilaiMahasiswaController extends Controller
     // print_r($nilai_mahasiswa);
     // echo "</pre>";
     // die;
+    $data['title'] = 'Detail Nilai';
     $data['mahasiswa'] = $mahasiswa;
     $data['nilai'] = $nilai_mahasiswa;
 

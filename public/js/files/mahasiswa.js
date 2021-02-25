@@ -249,19 +249,7 @@ function destroy(nim) {
             text: 'Something went wrong!',
           });
         }
-<<<<<<< HEAD
-      },
-        error: function (err) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          });
-        }
-    });
-=======
       });
     }
->>>>>>> c4ef291d8df87030725ee9b7299285d385f9e6f6
-})
+  })
 }
