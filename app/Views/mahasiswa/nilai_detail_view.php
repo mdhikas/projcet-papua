@@ -1,0 +1,78 @@
+<?= $this->extend('layout/body'); ?>
+<?= $this->section('content'); ?>
+
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Detail Nilai Mahasiswa</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('mahasiswa') ?>">Mahasiswa</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('mahasiswa/nilai') ?>">Nilai</a></li>
+            <li class="breadcrumb-item active">Detail</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <?php if ($mahasiswa) : ?>
+      <div class="card card-default color-palette-box">
+        <div class="card-header">
+          <h3 class="card-title">
+            <?= $mahasiswa['nim'] ?> - <?= $mahasiswa['nama'] ?>
+          </h3>
+        </div>
+        <div class="card-body">
+          <table class="table mt-2" width="100%">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Semester</th>
+                <th>SKS Diambil</th>
+                <th>IP Semester</th>
+                <th>Total SKS</th>
+                <th>IP Komulatif</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php 
+                $total_sks = 0; 
+                $total_ipk = 0;
+              ?>
+              <?php foreach ($nilai as $k => $v) : ?>
+                <?php 
+                  $total_sks += $v['jumlah_sks'];
+                  $total_ipk += $v['ips'];
+                  $ipk = $k > 0 ? $total_ipk / count($nilai) : $total_ipk;
+                ?>
+                <tr>
+                  <td><?= ++$k ?></td>
+                  <td><?= $v['semester'] ?></td>
+                  <td><?= number_format($v['jumlah_sks'], 2) ?></td>
+                  <td><?= number_format($v['ips'], 2) ?></td>
+                  <td><?= number_format($total_sks, 2) ?></td>
+                  <td><?= number_format($ipk, 2) ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <?php else : ?>
+        <div class="card">
+          <div class="card-body">
+            <h3 class="text-center">Data Tidak Ditemukan</h3>
+          </div>
+        </div>
+      <?php endif; ?>
+    </div>
+  </section>
+</div>
+<?= $this->endSection(); ?>

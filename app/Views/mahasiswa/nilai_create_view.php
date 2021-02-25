@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/home">Home</a></li>
             <li class="breadcrumb-item"><a href="<?= base_url('mahasiswa') ?>">Mahasiswa</a></li>
-            <li class="breadcrumb-item"><a href="<?= base_url('nilai') ?>">Nilai</a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('mahasiswa/nilai') ?>">Nilai</a></li>
             <li class="breadcrumb-item active">Create</li>
           </ol>
         </div>
@@ -102,6 +102,8 @@
               <p>IPS : <b><span id="ips">0.00</span></b></p>
             </div>
           </div>
+          <input type="hidden" name="total_sks">
+          <input type="hidden" name="ips">
         </div>
         <div class="card-footer">          
           <button type="submit" class="btn btn-primary">Simpan</button>
