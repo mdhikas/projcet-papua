@@ -41,7 +41,12 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label for="exampleInputEmail1">Semester</label>
-                <input type="text" class="form-control" name="kode_semester" placeholder="Semester" required>
+                <select name="kode_semester" class="form-control">
+                  <option selected disabled>Semester</option>
+                  <?php foreach ($semester as $k => $v) : ?>
+                    <option value="<?= $v['kode_semester'] ?>"><?= $v['kode_semester'] ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
           </div>
@@ -106,7 +111,7 @@
           <input type="hidden" name="ips">
         </div>
         <div class="card-footer">          
-          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="submit" id="btn-submit" class="btn btn-primary">Simpan</button>
         </div>
       </div>
     </form>

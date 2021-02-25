@@ -67,6 +67,9 @@ $(document).ready(function() {
       type: 'POST',
       data: $(this).serialize(),
       dataType: 'JSON',
+      beforeSend: function() {
+        $('#btn-submit').html('Processing...')
+      },
       success: function(res) {
         if (res.status === 1) {
           Swal.fire({
@@ -132,25 +135,6 @@ function get_nama_mahasiswa(nim) {
     dataType: 'JSON',
     success: function(res) {
       $('#nama').val(res.nama);
-    },
-    error: err => console.log(err)
-  });
-}
-
-function get_list_nilai_mahasiswa(nim) {
-  $('.list-group').css('display', 'none');
-  $('#result_table_nilai').css('display', 'block');
-  $('#nim1').val(nim);
-
-  $.ajax({
-    url: base_url() + '/mahasiswa/nilai/get_list_nilai_mahasiswa',
-    type: 'GET',
-    data: { nim },
-    dataType: 'JSON',
-    success: function (res) {
-      $('#label_nim').html(res.nim);
-      $('#label_nama').html(res.nama);
-      $('#list-nilai').html(res.data);
     },
     error: err => console.log(err)
   });

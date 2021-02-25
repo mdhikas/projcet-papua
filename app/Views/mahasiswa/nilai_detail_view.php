@@ -23,14 +23,14 @@
   <section class="content">
     <div class="container-fluid">
       <?php if ($mahasiswa) : ?>
-      <div class="card card-default color-palette-box">
+      <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">
-            <?= $mahasiswa['nim'] ?> - <?= $mahasiswa['nama'] ?>
+          <h3 class="card-title text-uppercase">
+            <b><?= $mahasiswa['nim'] ?> - <?= $mahasiswa['nama'] ?></b>
           </h3>
         </div>
         <div class="card-body">
-          <table class="table mt-2" width="100%">
+          <table class="table" width="100%">
             <thead>
               <tr>
                 <th>#</th>
@@ -50,7 +50,6 @@
                 <?php 
                   $total_sks += $v['jumlah_sks'];
                   $total_ipk += $v['ips'];
-                  $ipk = $k > 0 ? $total_ipk / count($nilai) : $total_ipk;
                 ?>
                 <tr>
                   <td><?= ++$k ?></td>
@@ -58,7 +57,7 @@
                   <td><?= number_format($v['jumlah_sks'], 2) ?></td>
                   <td><?= number_format($v['ips'], 2) ?></td>
                   <td><?= number_format($total_sks, 2) ?></td>
-                  <td><?= number_format($ipk, 2) ?></td>
+                  <td><?= number_format($total_ipk / $k++, 2) ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

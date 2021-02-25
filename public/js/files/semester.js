@@ -38,7 +38,7 @@ function store() {
   }
 
   $.ajax({
-    url: base_url() + '/semester/store',
+    url: base_url() + '/master/semester/store',
     type: 'POST',
     data: $('#form-store-semester').serialize(),
     dataType: 'JSON',
@@ -82,7 +82,7 @@ function update() {
   }
 
   $.ajax({
-    url: base_url() + '/semester/update',
+    url: base_url() + '/master/semester/update',
     type: 'POST',
     data: $('#form-update-semester').serialize(),
     dataType: 'JSON',
@@ -124,7 +124,7 @@ function destroy(kode_semester) {
   }).then((result) => {
     if (result.value) {
       $.ajax({
-        url: base_url() + '/semester/destroy',
+        url: base_url() + '/master/semester/destroy',
         type: 'POST',
         data: { kode_semester },
         dataType: 'JSON',
@@ -167,7 +167,7 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-        url: base_url() + '/semester/get_records',
+        url: base_url() + '/master/semester/get_records',
         type: 'POST',
         data: {}
     },

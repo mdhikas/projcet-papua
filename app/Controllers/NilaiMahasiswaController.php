@@ -7,12 +7,14 @@ use CodeIgniter\Controller;
 use App\Models\NilaiMahasiswaModel;
 use App\Models\MahasiswaModel;
 use App\Models\IpsModel;
+use App\Models\Master\SemesterModel;
 
 class NilaiMahasiswaController extends Controller
 {
   protected $nilai_model;
   protected $mahasiswa_model;
   protected $ips_model;
+  protected $semester_model;
   protected $uri;
 
   public function __construct()
@@ -21,6 +23,7 @@ class NilaiMahasiswaController extends Controller
     $this->nilai_model = new NilaiMahasiswaModel();
     $this->mahasiswa_model = new MahasiswaModel();
     $this->ips_model = new IpsModel();
+    $this->semester_model = new SemesterModel();
     $this->uri = new \CodeIgniter\HTTP\URI();
     $this->uri = service('uri');
   }
@@ -35,6 +38,7 @@ class NilaiMahasiswaController extends Controller
   public function create()
   {
     $data['js'] = 'mahasiswa_nilai.js';
+    $data['semester'] = $this->semester_model->orderBy('kode_semester', 'DESC')->findAll();
 
     return view('mahasiswa/nilai_create_view', $data);
   }
@@ -81,67 +85,11 @@ class NilaiMahasiswaController extends Controller
     
     $mahasiswa = $this->mahasiswa_model->find($nim);
     $nilai_mahasiswa = $this->ips_model->where(['nim' => $nim])->orderBy('semester', 'ASC')->findAll();
-    // echo "<pre>";
-    // print_r($nilai_mahasiswa);
-    // echo "</pre>";
-    // die;
+
     $data['mahasiswa'] = $mahasiswa;
     $data['nilai'] = $nilai_mahasiswa;
 
     return view('mahasiswa/nilai_detail_view', $data);
-  }
-
-  public function get_mahasiswa_by_nim()
-  {
-    $nim = $_POST['query'];
-
-    $data = $this->mahasiswa_model->get_mahasiswa_by_nim($nim);
-    $output = "";
-    $output .= '<ul class="list-group">';
-    if ($data) {
-      foreach ($data as $k => $v) {
-        $temp_nim = "'" . $v['nim'] . "'";
-        $output .= '<li class="list-group-item"><a href="javascript:void(0)" class="nim" onclick="get_list_nilai_mahasiswa(' . $temp_nim . ')">' . $v['nim'] . '</a></li>';
-      }
-    } else {
-      $output .= '<li class="list-group-item">Data Tidak Ditemukan</li>';
-    }
-    $output .= '</ul>';
-
-    return json_encode(['data' => $output]);
-  }
-
-  public function get_list_nilai_mahasiswa()
-  {
-    $nim = $_GET['nim'];
-    $data = $this->nilai_model->get_nilai_mahasiswa_by_nim($nim);
-    $mahasiswa = $this->mahasiswa_model->select('nama')->find($nim);
-
-    $output = "";
-    if ($data) {
-      foreach ($data as $k => $v) {
-        $ips = $v['nilai_bobot'] / $v['total_sks'];
-        $output .= '
-          <tr>
-            <td class="text-center">' . ++$k . '</td>
-            <td>' . $v['semester'] . '</td>
-            <td>' . $v['total_sks'] . '</td>
-            <td>' . $v['nilai_bobot'] . '</td>
-            <td>' . number_format($ips, 2) . '</td>
-          </tr>
-        ';
-      }
-    } else {
-      $output .= '
-        <tr>
-          <td colspan="5" class="text-center">Data Belum Ada</td>
-        </tr>
-      ';
-    }
-    $res['nim'] = $nim;
-    $res['nama'] = $mahasiswa['nama'];
-    $res['data'] = $output;
-    return json_encode($res);
   }
 
   public function get_records()
@@ -164,9 +112,6 @@ class NilaiMahasiswaController extends Controller
       $row    = array();
 
       $btn_detail = '<a href="'. base_url('mahasiswa/nilai/detail/' . $list['nim']) .'" class="btn btn-primary btn-sm btn-flat">Detail</a>';
-      // $btn_edit = '<a href="'. base_url('mahasiswa/edit/' . $list['nim']) .'" class="btn btn-warning btn-sm btn-edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>';
-
-      // $btn_delete = '<button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="destroy('. $list['nim'] .')"><i class="fas fa-trash-alt"></i></button>';
 
       $row[]  = $start;
       $row[]  = $list['nim'];
