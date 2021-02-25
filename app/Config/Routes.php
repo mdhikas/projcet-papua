@@ -52,8 +52,10 @@ $routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function($route
     $routes->get('/', 'NilaiMahasiswaController::index');
     $routes->get('create', 'NilaiMahasiswaController::create');
     $routes->post('store', 'NilaiMahasiswaController::store');
+    $routes->get('detail/(:num)', 'NilaiMahasiswaController::show/$1');
     $routes->post('search_nim', 'NilaiMahasiswaController::get_mahasiswa_by_nim');
     $routes->get('get_list_nilai_mahasiswa', 'NilaiMahasiswaController::get_list_nilai_mahasiswa');
+    $routes->post('get_records', 'NilaiMahasiswaController::get_records');
   });
 });
 

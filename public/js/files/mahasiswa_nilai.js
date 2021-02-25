@@ -1,9 +1,11 @@
+let nilai_table;
 let field_counter = 1;
 let ips, total_bobot = 0, jumlah_sks = 0;
 let arr_nilai = [];
 let total_sks = [];
 
 $(document).ready(function() {
+  show_records();
   check_field_counter();
 
   $('#nim').keyup(function() {
@@ -86,6 +88,38 @@ $(document).ready(function() {
     });
   });
 });
+
+function show_records() {
+  nilai_table = $('#data-table').DataTable({
+    processing: true,
+    serverside: true,
+    language: {
+      emptyTable: "Tidak ada data yang tersedia pada tabel",
+      processing: '<i class="fas fa-spinner fa-spin fa-3x fa-fw text-primary"></i>'
+    },
+    responsive: true,
+    order: [],
+    ajax: {
+      url: './nilai/get_records',
+      type: 'POST',
+      data: {}
+    },
+    columnDefs: [
+      {
+        targets: [0, -1],
+        orderable: false
+      },
+      {
+        targets: [0, -1],
+        className: 'text-center'
+      },
+      {
+        className: 'dt-nowrap',
+        targets: [-1]
+      }
+    ]
+  });
+}
 
 function get_nama_mahasiswa(nim) {
   $('.list-group').css('display', 'none');
@@ -189,6 +223,8 @@ function calculate_ips(index, value) {
   $('#total_sks').html(jumlah_sks);
   $('#total_bobot').html(total_bobot);
   $('#ips').html(ips);
+  $('input[name="total_sks"]').val(jumlah_sks);
+  $('input[name="ips"]').val(ips);
 }
 
 function add_field() {
