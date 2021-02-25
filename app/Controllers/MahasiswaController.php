@@ -134,7 +134,7 @@ class MahasiswaController extends Controller
         $output .= '<li class="list-group-item"><a href="javascript:void(0)" class="nim" onclick="get_nama_mahasiswa(' . $temp_nim . ')">' . $v['nim'] . '</a></li>';
       }
     } else {
-      $output .= '<li class="list-group-item">Data Tidak Ditemukan</li>';
+      $output .= '<li class="list-group-item">Data Tidak Ditemukan <br><a href="'.base_url('mahasiswa/create').'">+ Tambah Mahasiswa</a></li>';
     }
     $output .= '</ul>';
 
