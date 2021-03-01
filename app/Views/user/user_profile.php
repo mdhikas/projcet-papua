@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-info">
-                    <div class="card-header card-header-pills">
+                    <div class="card-header">
                         <h3 class="header-title">Profile</h3>
                     </div>
                     <div class="card-body">

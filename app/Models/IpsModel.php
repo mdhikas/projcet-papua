@@ -48,6 +48,7 @@ class IpsModel extends Model
     }
   }
 
+
   public function get_datatables($table, $column_order, $column_search, $order, $data = '')
   {
     $this->_get_datatables_query($table, $column_order, $column_search, $order);

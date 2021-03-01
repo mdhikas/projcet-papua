@@ -40,8 +40,33 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <img src="<?= base_url(); ?>\img\<?= user()->image; ?>" class="img-circle admin" alt="">
+                <li class="dropdown user user-menu open">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <img src="<?= base_url(); ?>\img\<?= user()->image; ?>" class="user-image" alt="User Image">
+                        <span class="hidden-xs"><?= user()->username; ?></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="<?= base_url(); ?>\img\<?= user()->image; ?>" class="img-circle admin" alt="">
+                            <p>
+                                <?= user()->email; ?>
+                                <small>NIM <?= user()->nim; ?></small>
+                            </p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="float-left">
+                                <a href="<?= base_url('user/profile/' . user()->username); ?>" class="btn btn-primary">Profile</a>
+                            </div>
+                            <div class="float-right">
+                                <a href="<?= base_url('logout'); ?>" class="btn btn-danger btn-logout">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
             </ul>
+
         </nav>
         <!-- /.navbar -->
 
@@ -79,10 +104,12 @@
     <script src="<?= base_url(); ?>/plugins/toastr/toastr.min.js"></script>
     <!-- ChartJs -->
     <script src="<?= base_url(); ?>/plugins/chart.js/Chart.min.js"></script>
-    <script src="/js/helper.js"></script>
+    <script src="<?= base_url(); ?>/js/helper.js"></script>
+    </script>
     <?php if (isset($js)) : ?>
         <script src="<?= base_url() ?>/js/files/<?= $js ?>"></script>
     <?php endif; ?>
+    <?php if (isset($js_inline)) : ?><?= $js_inline ?><?php endif; ?>
     <script>
         $(document).ready(function() {
             $("#inputState").on('change', function() {

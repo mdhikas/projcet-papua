@@ -167,7 +167,7 @@ function get_records() {
     responsive: true,
     order: [],
     ajax: {
-      url: './master/semester/get_records',
+      url: base_url() + '/master/semester/get_records',
       type: 'POST',
       data: {}
     },

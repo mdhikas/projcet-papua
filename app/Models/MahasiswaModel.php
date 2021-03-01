@@ -100,11 +100,7 @@ class MahasiswaModel extends Model
 
   public function get_total_mhs_per_tahun()
   {
-    $this->builder = $this->db->table($this->table);
-    // $this->builder->select('tahun');
-    $this->builder->select('nim');
-    $this->builder->groupBy('tahun');
-    $query = $this->builder->get();
+    $query = $this->db->query("SELECT tahun, COUNT(*) as Total FROM mahasiswa GROUP BY tahun");
     return $query->getResultArray();
   }
 }

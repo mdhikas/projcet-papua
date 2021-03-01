@@ -19,14 +19,15 @@ class Pages extends Controller
 
     public function index()
     {
-
         if (in_groups('superadmin')) {
+
             $data['title'] = 'Papua | Admin';
-            $data['js'] = 'script_admin.js';
-            $data['user'] = $this->user->countAllResults();
-            $data['mahasiswa'] = $this->mahasiswa->countAllResults();
-            $data['tahun'] = $this->mahasiswa->get_tahun();
-            $data['jumlah'] = $this->mahasiswa->get_total_mhs_per_tahun();
+            // $data['js'] = 'script_admin.js';
+            $data['jml_user'] = $this->user->countAllResults();
+            $data['jml_mahasiswa'] = $this->mahasiswa->countAllResults();
+            $data_js['dtMhs'] = json_encode($this->mahasiswa->get_total_mhs_per_tahun());
+            $data_js['dtIpk'] = json_encode($this->mahasiswa->get_total_mhs_per_tahun());
+            $data['js_inline'] = view("admin/detail_chart_admin", $data_js);
             return view('pages/dashboard_admin', $data);
         } else {
             $data['title'] = 'Papua';

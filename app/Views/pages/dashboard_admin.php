@@ -2,9 +2,6 @@
 <?= $this->section('content'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <?php foreach ($tahun as $thn)
-    echo json_encode($thn);
-  ?>
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <?php if (session()->getFlashdata('pesan')) : ?>
@@ -36,7 +33,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">User</span>
-              <span class="info-box-number"><?= $user; ?></span>
+              <span class="info-box-number"><?= $jml_user; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -49,7 +46,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Mahasiswa</span>
-              <span class="info-box-number"><?= $mahasiswa; ?></span>
+              <span class="info-box-number"><?= $jml_mahasiswa; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

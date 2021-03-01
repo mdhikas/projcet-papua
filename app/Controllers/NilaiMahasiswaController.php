@@ -88,7 +88,9 @@ class NilaiMahasiswaController extends Controller
 
     $mahasiswa = $this->mahasiswa_model->find($nim);
     $nilai_mahasiswa = $this->ips_model->where(['nim' => $nim])->orderBy('semester', 'ASC')->findAll();
+    $data_js['dtNilai'] = json_encode($nilai_mahasiswa);
     $data['title'] = 'Detail Nilai';
+    $data['js_inline'] = view("mahasiswa/nilai_detail_chart", $data_js);
     $data['mahasiswa'] = $mahasiswa;
     $data['nilai'] = $nilai_mahasiswa;
 

@@ -4,11 +4,11 @@ let ips, total_bobot = 0, jumlah_sks = 0;
 let arr_nilai = [];
 let total_sks = [];
 
-$(document).ready(function() {
+$(document).ready(function () {
   show_records();
   check_field_counter();
 
-  $('#nim').keyup(function() {
+  $('#nim').keyup(function () {
     let query = $(this).val();
 
     if (query != "") {
@@ -17,14 +17,14 @@ $(document).ready(function() {
         type: 'POST',
         data: { query },
         dataType: 'JSON',
-        beforeSend: function() {
+        beforeSend: function () {
           $('#result_nim').html(`
             <ul class="list-group">
               <li class="list-group-item">Searching...</li>
             </ul>
           `);
         },
-        success: function(res) {
+        success: function (res) {
           $('#result_nim').html(res.data);
         },
         error: err => console.log(err)
@@ -34,7 +34,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#nim1').keyup(function() {
+  $('#nim1').keyup(function () {
     let query = $(this).val();
 
     if (query != "") {
@@ -43,14 +43,14 @@ $(document).ready(function() {
         type: 'POST',
         data: { query },
         dataType: 'JSON',
-        beforeSend: function() {
+        beforeSend: function () {
           $('#result_nim').html(`
             <ul class="list-group">
               <li class="list-group-item">Searching...</li>
             </ul>
           `);
         },
-        success: function(res) {
+        success: function (res) {
           $('#result_nim').html(res.data);
         },
         error: err => console.log(err)
@@ -60,23 +60,23 @@ $(document).ready(function() {
     }
   });
 
-  $('#form-store-nilai').on('submit', function(e) {
+  $('#form-store-nilai').on('submit', function (e) {
     e.preventDefault();
     $.ajax({
       url: base_url() + '/mahasiswa/nilai/store',
       type: 'POST',
       data: $(this).serialize(),
       dataType: 'JSON',
-      beforeSend: function() {
+      beforeSend: function () {
         $('#btn-submit').html('Processing...')
       },
-      success: function(res) {
+      success: function (res) {
         if (res.status === 1) {
           Swal.fire({
             icon: 'success',
             title: 'Good Job',
             text: 'Data berhasil disimpan',
-          }).then(function() {
+          }).then(function () {
             window.location.href = base_url() + '/mahasiswa/nilai';
           });
         } else {
@@ -133,7 +133,7 @@ function get_nama_mahasiswa(nim) {
     type: 'POST',
     data: { nim },
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#nama').val(res.nama);
     },
     error: err => console.log(err)
@@ -141,23 +141,23 @@ function get_nama_mahasiswa(nim) {
 }
 
 function search_kode_mk(index) {
-  $('#kode_mk_' + index).keyup(function() {
+  $('#kode_mk_' + index).keyup(function () {
     let query = $(this).val();
-    
+
     if (query != "") {
       $.ajax({
         url: base_url() + '/master/matkul/search_kode_mk',
         type: 'GET',
         data: { index, query },
         dataType: 'JSON',
-        beforeSend: function() {
+        beforeSend: function () {
           $('#result_kode_mk_' + index).html(`
             <ul class="list-group">
               <li class="list-group-item">Searching...</li>
             </ul>
           `);
         },
-        success: function(res) {
+        success: function (res) {
           $('#result_kode_mk_' + index).html(res.data);
         },
         error: err => console.log(err)
@@ -177,7 +177,7 @@ function get_nama_matkul(index, kode_mk) {
     type: 'GET',
     data: { kode_mk },
     dataType: 'JSON',
-    success: function(res) {
+    success: function (res) {
       $('#nama_mk_' + index).val(res.nama_mk);
       $('#sks_' + index).val(res.sks);
     },
@@ -191,7 +191,7 @@ function calculate_ips(index, value) {
   if (typeof arr_nilai[index - 1] === 'undefined') {
     arr_nilai.push(bobot(value) * sks);
   } else {
-    arr_nilai[index - 1 ] = bobot(value) * sks;
+    arr_nilai[index - 1] = bobot(value) * sks;
   }
 
   if (typeof total_sks[index - 1] === 'undefined') {
@@ -200,8 +200,8 @@ function calculate_ips(index, value) {
     total_sks[index - 1] = sks;
   }
   jumlah_sks = total_sks
-                .map(Number)
-                .reduce((acc, curr) => acc + curr);
+    .map(Number)
+    .reduce((acc, curr) => acc + curr);
   total_bobot = arr_nilai.reduce((acc, curr) => acc + curr);
   ips = total_bobot / jumlah_sks;
   $('#total_sks').html(jumlah_sks);
