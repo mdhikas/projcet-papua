@@ -52,7 +52,10 @@ $routes->group('user', ['namespace' => '\App\Controllers\User'], function ($rout
   // $routes->get('skpi/(:segment)', 'UserController::skpi/$1');
   $routes->get('skpi', 'UserController::skpi');
   $routes->get('skpi/create', 'UserController::skpi_create');
-  $routes->get('skpi/store', 'UserController::skpi_store');
+  $routes->post('skpi/store', 'UserController::skpi_store');
+  $routes->post('skpi/update', 'UserController::skpi_update');
+  $routes->post('skpi/destroy', 'UserController::skpi_destroy');
+  $routes->post('skpi/get_records', 'UserController::skpi_get_records');
 });
 
 $routes->group('mahasiswa', ['namespace' => '\App\Controllers'], function ($routes) {
